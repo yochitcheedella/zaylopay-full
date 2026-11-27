@@ -19,7 +19,6 @@ public class AffiliateIdService {
 	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyMMdd");
 	private static final int MAX_LOCK_RETRIES = 5;
 
-	private final DailyAffiliateIdCounterRepository counterRepository;
 	private final DailyAffiliateIdAllocator counterAllocator;
 	private final AffiliateMembershipRepository membershipRepository;
 	private final Clock clock;
@@ -44,7 +43,6 @@ public class AffiliateIdService {
 			DailyAffiliateIdAllocator counterAllocator,
 			AffiliateMembershipRepository membershipRepository,
 			Clock clock) {
-		this.counterRepository = counterRepository;
 		this.counterAllocator = counterAllocator;
 		this.membershipRepository = membershipRepository;
 		this.clock = clock == null ? Clock.systemUTC() : clock;

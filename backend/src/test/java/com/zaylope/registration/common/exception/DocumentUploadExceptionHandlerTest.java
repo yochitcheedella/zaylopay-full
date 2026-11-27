@@ -13,7 +13,7 @@ class DocumentUploadExceptionHandlerTest {
 		var response = new GlobalExceptionHandler().handleMaximumUploadSizeExceeded(
 				new MaxUploadSizeExceededException(10L * 1024 * 1024));
 
-		assertEquals(HttpStatus.PAYLOAD_TOO_LARGE, response.getStatusCode());
+		assertEquals(HttpStatus.CONTENT_TOO_LARGE, response.getStatusCode());
 		assertEquals("INVALID_DOCUMENT", response.getBody().getProperties().get("code"));
 		assertEquals("The file exceeds the 10 MB upload limit.", response.getBody().getDetail());
 	}

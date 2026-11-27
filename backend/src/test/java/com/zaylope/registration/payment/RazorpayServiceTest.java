@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.zaylope.registration.common.exception.PaymentGatewayException;
 import com.zaylope.registration.config.RazorpayProperties;
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.util.HexFormat;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

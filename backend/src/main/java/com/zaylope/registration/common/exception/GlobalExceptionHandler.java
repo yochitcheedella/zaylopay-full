@@ -200,7 +200,7 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ProblemDetail> handleInvalidApplicantDocument(
 			InvalidApplicantDocumentException exception) {
 		return problem(
-				HttpStatus.UNPROCESSABLE_ENTITY,
+				HttpStatus.UNPROCESSABLE_CONTENT,
 				exception.getMessage(),
 				"INVALID_DOCUMENT");
 	}
@@ -209,7 +209,7 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ProblemDetail> handleMaximumUploadSizeExceeded(
 			MaxUploadSizeExceededException exception) {
 		return problem(
-				HttpStatus.PAYLOAD_TOO_LARGE,
+				HttpStatus.CONTENT_TOO_LARGE,
 				"The file exceeds the 10 MB upload limit.",
 				"INVALID_DOCUMENT");
 	}
@@ -218,7 +218,7 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ProblemDetail> handleDocumentConsentRequired(
 			DocumentConsentRequiredException exception) {
 		return problem(
-				HttpStatus.UNPROCESSABLE_ENTITY,
+				HttpStatus.UNPROCESSABLE_CONTENT,
 				"Confirm the configured privacy notice before uploading a document.",
 				"DOCUMENT_CONSENT_REQUIRED");
 	}
@@ -227,7 +227,7 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ProblemDetail> handleOnboardingConsentRequired(
 			OnboardingConsentRequiredException exception) {
 		return problem(
-				HttpStatus.UNPROCESSABLE_ENTITY,
+				HttpStatus.UNPROCESSABLE_CONTENT,
 				exception.getMessage(),
 				"ONBOARDING_CONSENT_REQUIRED");
 	}

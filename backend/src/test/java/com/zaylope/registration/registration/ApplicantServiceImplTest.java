@@ -1,6 +1,5 @@
 package com.zaylope.registration.registration;
 
-import com.zaylope.registration.applicant.Applicant;
 import com.zaylope.registration.common.exception.MobileAlreadyVerifiedException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;

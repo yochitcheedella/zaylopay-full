@@ -33,7 +33,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -236,7 +235,6 @@ class SecureDocumentUploadIntegrationTest {
 	@Test
 	void test12_transactionRollbackCleansUpStagedFile() throws IOException {
 		byte[] png = createImage("png");
-		var file = new MockMultipartFile("file", "pan.png", "image/png", png);
 
 		TransactionSynchronizationManager.initSynchronization();
 		String stagedId = null;

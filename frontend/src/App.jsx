@@ -11,6 +11,7 @@ import ScrollManager from './Components/PublicLayout/ScrollManager';
 const Login = lazy(() => import('./Pages/Login/Login'));
 const Register = lazy(() => import('./Pages/Register/Register'));
 const MemberWelcomePage = lazy(() => import('./Pages/Welcome/MemberWelcomePage'));
+const EarningsPage = lazy(() => import('./Pages/Earnings/Earnings'));
 const AdminDashboard = lazy(() => import('./Pages/Admin/AdminDashboard'));
 function AccountPage({ children }) {
   return <PageErrorBoundary><Suspense fallback={<PageLoading />}>{children}</Suspense></PageErrorBoundary>;
@@ -33,6 +34,7 @@ export default function App() {
     <Route path="/review" element={<Navigate to="/register?step=3" replace />} />
     <Route path="/welcome" element={<AccountPage><MemberWelcomePage /></AccountPage>} />
     <Route path="/dashboard" element={<AccountPage><MemberWelcomePage /></AccountPage>} />
+    <Route path="/earnings" element={<AccountPage><EarningsPage /></AccountPage>} />
     <Route path="/admin" element={<AccountPage><AdminDashboard /></AccountPage>} />
     <Route path="/admin/approvals" element={<AccountPage><AdminDashboard /></AccountPage>} />
   </Routes></BrowserRouter></MotionProvider>;

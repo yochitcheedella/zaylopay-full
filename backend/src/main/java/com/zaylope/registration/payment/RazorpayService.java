@@ -75,8 +75,8 @@ public class RazorpayService {
 			HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
 			if (response.statusCode() >= 200 && response.statusCode() < 300) {
 				JsonNode root = objectMapper.readTree(response.body());
-				String orderId = root.path("id").asText();
-				String status = root.path("status").asText("created");
+				String orderId = root.path("id").asString();
+				String status = root.path("status").asString("created");
 				LOGGER.info("Created real Razorpay Test Order {} for applicantId {} of amount {} {}",
 						orderId, applicantId, amountPaise, currency);
 				return new RazorpayOrderResult(orderId, amountPaise, currency, receipt, status, properties.keyId().trim());
@@ -116,10 +116,10 @@ public class RazorpayService {
 			HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
 			if (response.statusCode() >= 200 && response.statusCode() < 300) {
 				JsonNode root = objectMapper.readTree(response.body());
-				String status = root.path("status").asText();
+				String status = root.path("status").asString();
 				long amount = root.path("amount").asLong();
-				String currency = root.path("currency").asText();
-				String orderId = root.path("order_id").asText();
+				String currency = root.path("currency").asString();
+				String orderId = root.path("order_id").asString();
 				return new RazorpayPaymentDetails(paymentId, status, amount, currency, orderId);
 			} else {
 				String errorDesc = parseRazorpayError(response.body());
@@ -162,12 +162,12 @@ public class RazorpayService {
 			java.util.List<RazorpayPaymentDetails> results = new java.util.ArrayList<>();
 			for (JsonNode item : items) {
 				results.add(new RazorpayPaymentDetails(
-						item.path("id").asText(),
-						item.path("status").asText(),
+						item.path("id").asString(),
+						item.path("status").asString(),
 						item.path("amount").asLong(),
-						item.path("currency").asText(),
-						item.path("order_id").asText(orderId),
-						item.path("method").asText("razorpay")));
+						item.path("currency").asString(),
+						item.path("order_id").asString(orderId),
+						item.path("method").asString("razorpay")));
 			}
 			return results;
 		} catch (Exception e) {
@@ -243,8 +243,8 @@ public class RazorpayService {
 			JsonNode node = objectMapper.readTree(responseBody);
 			if (node.has("error")) {
 				JsonNode err = node.get("error");
-				String desc = err.path("description").asText("");
-				String code = err.path("code").asText("");
+				String desc = err.path("description").asString("");
+				String code = err.path("code").asString("");
 				if (!desc.isBlank()) {
 					return desc + (!code.isBlank() ? " (" + code + ")" : "");
 				}

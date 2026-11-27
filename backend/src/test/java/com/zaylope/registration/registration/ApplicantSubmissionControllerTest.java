@@ -48,7 +48,7 @@ class ApplicantSubmissionControllerTest {
 						.requestAttr(ApplicantSessionPrincipal.REQUEST_ATTRIBUTE, new ApplicantSessionPrincipal(42L))
 						.contentType(MediaType.APPLICATION_JSON)
 						.content("{}"))
-				.andExpect(status().isUnprocessableEntity())
+				.andExpect(status().isUnprocessableContent())
 				.andExpect(jsonPath("$.code").value("ONBOARDING_CONSENT_REQUIRED"));
 	}
 }

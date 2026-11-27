@@ -1,7 +1,6 @@
 package com.zaylope.registration.document;
 
 import com.zaylope.registration.common.exception.InvalidApplicantDocumentException;
-import com.zaylope.registration.config.DocumentUploadProperties;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -18,7 +17,6 @@ import javax.imageio.stream.ImageInputStream;
 import org.apache.pdfbox.cos.COSArray;
 import org.apache.pdfbox.cos.COSBase;
 import org.apache.pdfbox.cos.COSDictionary;
-import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.cos.COSObject;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;

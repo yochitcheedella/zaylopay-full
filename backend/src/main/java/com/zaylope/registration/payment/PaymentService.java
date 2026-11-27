@@ -178,7 +178,7 @@ public class PaymentService {
 	}
 
 	public PaymentVerificationResponse verifyPayment(Long applicantId, PaymentVerificationRequest request) {
-		Applicant applicant = applicantRepository.findById(applicantId)
+		applicantRepository.findById(applicantId)
 				.orElseThrow(ApplicantNotFoundException::new);
 
 		PaymentOrder order = paymentOrderRepository.findByGatewayOrderId(request.razorpayOrderId())
@@ -355,8 +355,8 @@ public class PaymentService {
 			throw new PaymentGatewayException("Malformed webhook JSON payload.", e);
 		}
 
-		String event = root.path("event").asText("");
-		String eventId = root.path("event_id").asText("");
+		String event = root.path("event").asString("");
+		String eventId = root.path("event_id").asString("");
 		if (eventId == null || eventId.isBlank()) {
 			eventId = hashPayload(rawPayload);
 		}
@@ -371,21 +371,21 @@ public class PaymentService {
 		if ("payment.captured".equalsIgnoreCase(event) || "order.paid".equalsIgnoreCase(event)) {
 			JsonNode paymentEntity = root.path("payload").path("payment").path("entity");
 			JsonNode orderEntity = root.path("payload").path("order").path("entity");
-			String orderId = paymentEntity.path("order_id").asText("");
+			String orderId = paymentEntity.path("order_id").asString("");
 			if (orderId.isBlank()) {
-				orderId = orderEntity.path("id").asText("");
+				orderId = orderEntity.path("id").asString("");
 			}
-			String paymentId = paymentEntity.path("id").asText("");
-			String status = paymentEntity.path("status").asText("order.paid".equalsIgnoreCase(event) ? "captured" : "");
+			String paymentId = paymentEntity.path("id").asString("");
+			String status = paymentEntity.path("status").asString("order.paid".equalsIgnoreCase(event) ? "captured" : "");
 			long amount = paymentEntity.path("amount").asLong(0L);
 			if (amount <= 0L && orderEntity.has("amount")) {
 				amount = orderEntity.path("amount").asLong(0L);
 			}
-			String currency = paymentEntity.path("currency").asText("");
+			String currency = paymentEntity.path("currency").asString("");
 			if (currency.isBlank()) {
-				currency = orderEntity.path("currency").asText("INR");
+				currency = orderEntity.path("currency").asString("INR");
 			}
-			String method = paymentEntity.path("method").asText("webhook");
+			String method = paymentEntity.path("method").asString("webhook");
 
 			if (!orderId.isBlank() && !paymentId.isBlank() && "captured".equalsIgnoreCase(status)) {
 				Optional<PaymentOrder> orderOpt = paymentOrderRepository.findByGatewayOrderId(orderId);
@@ -416,10 +416,10 @@ public class PaymentService {
 			}
 		} else if ("payment.failed".equalsIgnoreCase(event)) {
 			JsonNode paymentEntity = root.path("payload").path("payment").path("entity");
-			String orderId = paymentEntity.path("order_id").asText("");
-			String paymentId = paymentEntity.path("id").asText("");
-			String errCode = paymentEntity.path("error_code").asText("PAYMENT_FAILED");
-			String errDesc = paymentEntity.path("error_description").asText("Payment failed at gateway.");
+			String orderId = paymentEntity.path("order_id").asString("");
+			String paymentId = paymentEntity.path("id").asString("");
+			String errCode = paymentEntity.path("error_code").asString("PAYMENT_FAILED");
+			String errDesc = paymentEntity.path("error_description").asString("Payment failed at gateway.");
 			if (!orderId.isBlank()) {
 				paymentOrderRepository.findByGatewayOrderId(orderId).ifPresent(order -> {
 					if (!"PAID".equalsIgnoreCase(order.getStatus())) {
@@ -439,8 +439,8 @@ public class PaymentService {
 		} else if ("refund.processed".equalsIgnoreCase(event) || "payment.refunded".equalsIgnoreCase(event)) {
 			JsonNode refundEntity = root.path("payload").path("refund").path("entity");
 			JsonNode paymentEntity = root.path("payload").path("payment").path("entity");
-			String paymentId = refundEntity.path("payment_id").asText(paymentEntity.path("id").asText(""));
-			String orderId = paymentEntity.path("order_id").asText("");
+			String paymentId = refundEntity.path("payment_id").asString(paymentEntity.path("id").asString(""));
+			String orderId = paymentEntity.path("order_id").asString("");
 			paymentPersistenceService.recordRefundedPayment(paymentId, orderId);
 		}
 

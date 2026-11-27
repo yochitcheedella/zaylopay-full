@@ -32,7 +32,9 @@ class ContactOtpDeliveryTest {
         var mobile = mock(MobileOtpDelivery.class);
         var email = mock(EmailOtpDelivery.class);
         var event = new ContactOtpDispatchEvent(71L, ApplicantVerificationChannel.EMAIL, "issue", "member@gmail.com", "123456");
-        when(states.expiration(event)).thenReturn(Optional.empty(), Optional.of(NOW.minusSeconds(1)));
+        when(states.expiration(event))
+                .thenReturn(Optional.empty())
+                .thenReturn(Optional.of(NOW.minusSeconds(1)));
         var dispatcher = new ContactOtpDeliveryDispatcher(states, mobile, email, Clock.fixed(NOW, ZoneOffset.UTC));
         dispatcher.dispatch(event); dispatcher.dispatch(event);
         verifyNoInteractions(mobile, email);

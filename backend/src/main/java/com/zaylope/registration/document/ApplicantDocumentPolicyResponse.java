@@ -1,7 +1,6 @@
 package com.zaylope.registration.document;
 
 import com.zaylope.registration.config.DocumentUploadProperties.DocumentTypeOption;
-import com.zaylope.registration.config.DocumentUploadProperties;
 import java.util.List;
 
 public record ApplicantDocumentPolicyResponse(

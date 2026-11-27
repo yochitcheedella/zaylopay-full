@@ -1,6 +1,5 @@
 package com.zaylope.registration.document;
 
-import com.zaylope.registration.applicant.Applicant;
 import com.zaylope.registration.common.exception.ApplicantDocumentNotFoundException;
 import com.zaylope.registration.common.exception.DocumentUploadNotConfiguredException;
 import com.zaylope.registration.common.exception.PrivateDocumentStorageException;

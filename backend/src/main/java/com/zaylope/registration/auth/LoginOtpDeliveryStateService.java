@@ -1,6 +1,5 @@
 package com.zaylope.registration.auth;
 
-import com.zaylope.registration.verification.ApplicantVerificationChannel;
 import java.time.Clock;
 import java.time.Instant;
 import java.util.Optional;

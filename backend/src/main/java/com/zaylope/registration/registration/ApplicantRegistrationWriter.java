@@ -11,7 +11,6 @@ import com.zaylope.registration.session.ApplicantSessionScope;
 import com.zaylope.registration.session.ApplicantSessionService;
 import java.time.Clock;
 import java.time.Instant;
-import java.util.Locale;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

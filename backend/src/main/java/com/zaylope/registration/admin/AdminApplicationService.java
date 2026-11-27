@@ -60,7 +60,6 @@ public class AdminApplicationService {
 	private final AffiliateMembershipRepository affiliateMembershipRepository;
 	private final AffiliateIdService affiliateIdService;
 	private final ApplicantDocumentService documentService;
-	private final DocumentUploadProperties documentUploadProperties;
 
 	public AdminApplicationService(
 			ApplicantRepository applicantRepository,
@@ -82,7 +81,6 @@ public class AdminApplicationService {
 		this.affiliateMembershipRepository = affiliateMembershipRepository;
 		this.affiliateIdService = affiliateIdService;
 		this.documentService = documentService;
-		this.documentUploadProperties = documentUploadProperties;
 	}
 
 	@Transactional(readOnly = true)

@@ -6,7 +6,6 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
-import org.springframework.core.io.DefaultResourceLoader;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmailContactPolicyTest {

@@ -1,7 +1,6 @@
 package com.zaylope.registration.admin;
 
 import com.zaylope.registration.admin.AdminDtos.AdminApprovalResponse;
-import com.zaylope.registration.affiliate.AffiliateMembership;
 import com.zaylope.registration.affiliate.AffiliateMembershipRepository;
 import com.zaylope.registration.applicant.Applicant;
 import com.zaylope.registration.applicant.ApplicantBankDetails;
@@ -20,13 +19,10 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -34,7 +30,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.flywaydb.core.Flyway;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -231,7 +226,7 @@ public class AdminApprovalMySqlIntegrationTest {
 		}
 
 		startLatch.countDown();
-		boolean allFinished = doneLatch.await(10, TimeUnit.SECONDS);
+		doneLatch.await(10, TimeUnit.SECONDS);
 		executor.shutdown();
 
 		List<AdminApprovalResponse> responses = new ArrayList<>();

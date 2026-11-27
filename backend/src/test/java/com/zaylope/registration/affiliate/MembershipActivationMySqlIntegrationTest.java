@@ -2,14 +2,12 @@ package com.zaylope.registration.affiliate;
 
 import com.zaylope.registration.applicant.Applicant;
 import com.zaylope.registration.applicant.ApplicantRepository;
-import com.zaylope.registration.auth.ApplicantLoginController;
 import com.zaylope.registration.common.exception.PaymentAlreadyCompletedException;
 import com.zaylope.registration.payment.PaymentDtos;
 import com.zaylope.registration.payment.PaymentService;
 import com.zaylope.registration.payment.PaymentTransactionRepository;
 import com.zaylope.registration.registration.ApplicantRegistrationRequest;
 import com.zaylope.registration.registration.ApplicantRegistrationWriter;
-import com.zaylope.registration.verification.ApplicantContactMasker;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -81,7 +81,7 @@ class IdentityValidationMySqlTest {
         int challenges = jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges", Integer.class);
         for (String id : List.of("Sai@kin.com", mobile())) {
             var result = tree(call(client(), "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", id))));
-            assertEquals("ACCOUNT_NOT_FOUND", result.path("outcome").asText());
+            assertEquals("ACCOUNT_NOT_FOUND", result.path("outcome").asString());
             assertFalse(result.path("accepted").asBoolean());
             java.nio.file.Files.writeString(java.nio.file.Path.of("target/explicit-unknown-api.json"), result.toPrettyString());
             assertTrue(result.path("challengeId").isNull());
@@ -94,12 +94,12 @@ class IdentityValidationMySqlTest {
         Applicant verified = verifiedApplicant(email("gmail.com"));
         verified.markMobileVerified(clock.instant()); applicants.saveAndFlush(verified);
         for (String id : List.of(verified.getEmail(), verified.getMobileNumber())) { clock.advance(3601);
-            assertEquals("CHALLENGE_INITIATED", tree(call(client(), "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", id)))).path("outcome").asText());
+            assertEquals("CHALLENGE_INITIATED", tree(call(client(), "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", id)))).path("outcome").asString());
         }
         Applicant draft = applicants.saveAndFlush(new Applicant("QA Unverified", mobile(), email("gmail.com")));
-        assertEquals("CONTACT_VERIFICATION_REQUIRED", tree(call(client(), "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", draft.getEmail())))).path("outcome").asText());
+        assertEquals("CONTACT_VERIFICATION_REQUIRED", tree(call(client(), "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", draft.getEmail())))).path("outcome").asString());
         verified.markRejected("Fixture restriction", clock.instant()); applicants.saveAndFlush(verified); clock.advance(3601);
-        assertEquals("ACCOUNT_UNAVAILABLE", tree(call(client(), "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", verified.getEmail())))).path("outcome").asText());
+        assertEquals("ACCOUNT_UNAVAILABLE", tree(call(client(), "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", verified.getEmail())))).path("outcome").asString());
     }
     @BeforeEach
     void isolateDurableBudgetsWithoutDeletingRows() { clock.advance(3601); }
@@ -107,7 +107,7 @@ class IdentityValidationMySqlTest {
     @Test
     void healthPolicyAndActualIsolatedSchemaVersion() throws Exception {
         var client = client();
-        assertEquals("UP", tree(call(client, "GET", "/actuator/health", null)).path("status").asText());
+        assertEquals("UP", tree(call(client, "GET", "/actuator/health", null)).path("status").asString());
         var policy = tree(call(client, "GET", "/api/v1/validation/email-policy", null));
         assertTrue(policy.path("allowlistEnabled").asBoolean());
         assertEquals(10, policy.path("allowedDomains").size());
@@ -132,28 +132,28 @@ class IdentityValidationMySqlTest {
         int deliveries = delivery.count.get();
         String unknownEmail = email("gmail.com");
         var unknown = tree(call(anonymous, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", unknownEmail))));
-        assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, unknown.path("challengeId").asText()));
+        assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, unknown.path("challengeId").asString()));
         assertEquals(deliveries, delivery.count.get());
         assertFalse(tree(call(anonymous, "GET", "/api/v1/auth/session", null)).path("authenticated").asBoolean());
         var issued = tree(call(anonymous, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", email))));
         String loginCode = delivery.await(email);
-        assertEquals(unknown.path("message").asText(), issued.path("message").asText());
+        assertEquals(unknown.path("message").asString(), issued.path("message").asString());
         assertEquals(unknown.path("expiresInSeconds").asLong(), issued.path("expiresInSeconds").asLong());
         assertEquals(unknown.path("resendAfterSeconds").asLong(), issued.path("resendAfterSeconds").asLong());
-        assertEquals(1, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, issued.path("challengeId").asText()));
-        String challenge = issued.path("challengeId").asText();
+        assertEquals(1, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, issued.path("challengeId").asString()));
+        String challenge = issued.path("challengeId").asString();
         assertEquals(400, call(anonymous, "POST", "/api/v1/auth/login/otp/verify", verifyBody(challenge, unknownEmail, loginCode)).statusCode());
         String wrongCode = loginCode.equals("000000") ? "111111" : "000000";
         assertEquals(400, call(anonymous, "POST", "/api/v1/auth/login/otp/verify", verifyBody(challenge, email, wrongCode)).statusCode());
         var verified = call(anonymous, "POST", "/api/v1/auth/login/otp/verify", verifyBody(challenge, email, loginCode));
         assertEquals(200, verified.statusCode());
-        assertEquals("QA Identity Applicant", tree(verified).path("fullName").asText());
+        assertEquals("QA Identity Applicant", tree(verified).path("fullName").asString());
         assertTrue(verified.headers().allValues("Set-Cookie").stream().anyMatch(cookie -> cookie.contains("HttpOnly")));
         var session = tree(call(anonymous, "GET", "/api/v1/auth/session", null));
         assertTrue(session.path("authenticated").asBoolean());
         assertTrue(session.path("identityAuthenticated").asBoolean());
-        assertEquals("PAYMENT", session.path("eligibleStep").asText());
-        assertEquals("NOT_STARTED", session.path("membershipStatus").asText());
+        assertEquals("PAYMENT", session.path("eligibleStep").asString());
+        assertEquals("NOT_STARTED", session.path("membershipStatus").asString());
         assertEquals(400, call(anonymous, "POST", "/api/v1/auth/login/otp/verify", verifyBody(challenge, email, loginCode)).statusCode());
         assertEquals(403, call(anonymous, "GET", "/api/v1/applicants/me/membership", null).statusCode());
         assertEquals(204, call(anonymous, "POST", "/api/v1/auth/logout", "{}").statusCode());
@@ -171,7 +171,7 @@ class IdentityValidationMySqlTest {
         var client = client();
         var issued = tree(call(client, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", email))));
         String code = delivery.await(email);
-        assertEquals(200, call(client, "POST", "/api/v1/auth/login/otp/verify", verifyBody(issued.path("challengeId").asText(), email, code)).statusCode());
+        assertEquals(200, call(client, "POST", "/api/v1/auth/login/otp/verify", verifyBody(issued.path("challengeId").asString(), email, code)).statusCode());
         assertEquals(fixture.getApplicantId(), id(email));
         var denied = call(client(), "POST", "/api/v1/applicants/register", registrationBody(email("corp.example.dev"), mobile()));
         assertEquals(400, denied.statusCode());
@@ -220,10 +220,10 @@ class IdentityValidationMySqlTest {
         String unknownMobile = mobile();
         var unknown = tree(call(client, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", unknownMobile))));
         assertEquals(before, delivery.count.get());
-        assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, unknown.path("challengeId").asText()));
+        assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, unknown.path("challengeId").asString()));
         var issued = tree(call(client, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", fixture.getMobileNumber()))));
         String code = delivery.await(fixture.getMobileNumber());
-        assertEquals(200, call(client, "POST", "/api/v1/auth/login/otp/verify", verifyBody(issued.path("challengeId").asText(), fixture.getMobileNumber(), code)).statusCode());
+        assertEquals(200, call(client, "POST", "/api/v1/auth/login/otp/verify", verifyBody(issued.path("challengeId").asString(), fixture.getMobileNumber(), code)).statusCode());
         var session = tree(call(client, "GET", "/api/v1/auth/session", null));
         assertTrue(session.path("mobileVerified").asBoolean());
         assertFalse(session.path("emailVerified").asBoolean());
@@ -266,7 +266,7 @@ class IdentityValidationMySqlTest {
         } while (System.nanoTime() < deadline);
         assertEquals("DELIVERY_FAILED", state);
         var status = tree(call(client, "GET", "/api/v1/applicants/me/verification/status", null));
-        assertEquals("DELIVERY_FAILED", status.path("email").path("challengeStatus").asText());
+        assertEquals("DELIVERY_FAILED", status.path("email").path("challengeStatus").asString());
         assertFalse(status.path("email").path("verified").asBoolean());
         assertNotEquals(200, call(client, "POST", "/api/v1/applicants/me/verification/email/verify", "{\"code\":\"000000\"}").statusCode());
     }
@@ -293,11 +293,11 @@ class IdentityValidationMySqlTest {
         for (String identifier : List.of("gopi@gm.com", "sai@gmi.com", "sai@kin.com", mobile())) {
             var response = call(client, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", identifier)));
             assertEquals(200, response.statusCode());
-            String challenge = tree(response).path("challengeId").asText();
+            String challenge = tree(response).path("challengeId").asString();
             assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, challenge));
             var limited = call(client, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", identifier)));
             assertEquals(429, limited.statusCode());
-            assertEquals("IDENTIFIER", tree(limited).path("rateLimitScope").asText());
+            assertEquals("IDENTIFIER", tree(limited).path("rateLimitScope").asString());
             assertEquals(60, tree(limited).path("retryAfterSeconds").asInt());
             assertTrue(tree(limited).has("retryAvailableAt"));
         }
@@ -315,18 +315,18 @@ class IdentityValidationMySqlTest {
         int before = delivery.count.get();
         var normal = tree(call(client, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", address))));
         assertEquals(before, delivery.count.get());
-        assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, normal.path("challengeId").asText()));
+        assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, normal.path("challengeId").asString()));
         assertEquals(429, call(client, "POST", "/api/v1/auth/recovery/otp/request", json.writeValueAsString(Map.of("identifier", address))).statusCode());
         clock.advance(61);
         var recovery = tree(call(client, "POST", "/api/v1/auth/recovery/otp/request", json.writeValueAsString(Map.of("identifier", address))));
         String code = delivery.await(address);
-        assertEquals(400, call(client, "POST", "/api/v1/auth/login/otp/verify", verifyBody(recovery.path("challengeId").asText(), address, code)).statusCode());
+        assertEquals(400, call(client, "POST", "/api/v1/auth/login/otp/verify", verifyBody(recovery.path("challengeId").asString(), address, code)).statusCode());
         assertFalse(tree(call(client, "GET", "/api/v1/auth/session", null)).path("authenticated").asBoolean());
-        var verified = call(client, "POST", "/api/v1/auth/recovery/otp/verify", verifyBody(recovery.path("challengeId").asText(), address, code));
+        var verified = call(client, "POST", "/api/v1/auth/recovery/otp/verify", verifyBody(recovery.path("challengeId").asString(), address, code));
         assertEquals(200, verified.statusCode());
         assertTrue(tree(verified).path("draftRecovered").asBoolean());
         assertTrue(applicants.findById(id(address)).orElseThrow().isTrustedEmailVerified());
-        assertEquals("PAYMENT", tree(call(client, "GET", "/api/v1/auth/session", null)).path("eligibleStep").asText());
+        assertEquals("PAYMENT", tree(call(client, "GET", "/api/v1/auth/session", null)).path("eligibleStep").asString());
     }
 
     @Test
@@ -340,7 +340,7 @@ class IdentityValidationMySqlTest {
         int before = delivery.count.get();
         for (String identifier : List.of(unverified.getMobileNumber(), restricted.getEmail(), exact.getEmail().toLowerCase(Locale.ROOT))) {
             var response = tree(call(client(), "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", identifier))));
-            assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, response.path("challengeId").asText()));
+            assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, response.path("challengeId").asString()));
         }
         assertEquals(before, delivery.count.get());
     }
@@ -355,11 +355,11 @@ class IdentityValidationMySqlTest {
         int before = delivery.count.get();
         var normal = tree(call(client, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", address))));
         assertEquals(before, delivery.count.get());
-        assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, normal.path("challengeId").asText()));
+        assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, normal.path("challengeId").asString()));
         clock.advance(61);
         var recovery = tree(call(client, "POST", "/api/v1/auth/recovery/otp/request", json.writeValueAsString(Map.of("identifier", address))));
         String code = delivery.await(address);
-        assertEquals(200, call(client, "POST", "/api/v1/auth/recovery/otp/verify", verifyBody(recovery.path("challengeId").asText(), address, code)).statusCode());
+        assertEquals(200, call(client, "POST", "/api/v1/auth/recovery/otp/verify", verifyBody(recovery.path("challengeId").asString(), address, code)).statusCode());
         assertTrue(applicants.findById(legacy.getApplicantId()).orElseThrow().isTrustedEmailVerified());
     }
 
@@ -372,8 +372,8 @@ class IdentityValidationMySqlTest {
             var client = client();
             var issued = tree(call(client, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", applicant.getEmail()))));
             String code = delivery.await(applicant.getEmail());
-            assertEquals(200, call(client, "POST", "/api/v1/auth/login/otp/verify", verifyBody(issued.path("challengeId").asText(), applicant.getEmail(), code)).statusCode());
-            assertEquals(applicant.getApplicantId(), jdbc.queryForObject("SELECT applicant_id FROM applicant_auth_challenges WHERE issuance_id=?", Long.class, issued.path("challengeId").asText()));
+            assertEquals(200, call(client, "POST", "/api/v1/auth/login/otp/verify", verifyBody(issued.path("challengeId").asString(), applicant.getEmail(), code)).statusCode());
+            assertEquals(applicant.getApplicantId(), jdbc.queryForObject("SELECT applicant_id FROM applicant_auth_challenges WHERE issuance_id=?", Long.class, issued.path("challengeId").asString()));
         }
     }
 
@@ -387,8 +387,8 @@ class IdentityValidationMySqlTest {
         delivery.await(applicant.getEmail());
         var alias = call(client(), "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", applicant.getEmail().toUpperCase(Locale.ROOT))));
         assertEquals(200, alias.statusCode());
-        assertEquals(first.path("message").asText(), tree(alias).path("message").asText());
-        assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, tree(alias).path("challengeId").asText()));
+        assertEquals(first.path("message").asString(), tree(alias).path("message").asString());
+        assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_auth_challenges WHERE issuance_id=?", Integer.class, tree(alias).path("challengeId").asString()));
         assertEquals(before + 1, delivery.count.get());
     }
 
@@ -401,7 +401,7 @@ class IdentityValidationMySqlTest {
         }
         var limited = call(client, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", email("gmail.com"))));
         assertEquals(429, limited.statusCode());
-        assertEquals("IP", tree(limited).path("rateLimitScope").asText());
+        assertEquals("IP", tree(limited).path("rateLimitScope").asString());
         assertEquals(before, delivery.count.get());
     }
 
@@ -411,7 +411,7 @@ class IdentityValidationMySqlTest {
         var first = client(); var second = client();
         var issued = tree(call(first, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", applicant.getEmail()))));
         String code = delivery.await(applicant.getEmail());
-        String body = verifyBody(issued.path("challengeId").asText(), applicant.getEmail(), code);
+        String body = verifyBody(issued.path("challengeId").asString(), applicant.getEmail(), code);
         assertEquals(400, call(second, "POST", "/api/v1/auth/recovery/otp/verify", body).statusCode());
         try (var executor = Executors.newFixedThreadPool(2)) {
             var a = executor.submit(() -> call(first, "POST", "/api/v1/auth/login/otp/verify", body).statusCode());
@@ -430,7 +430,7 @@ class IdentityValidationMySqlTest {
         var issued = tree(call(client, "POST", "/api/v1/auth/login/otp/request", json.writeValueAsString(Map.of("identifier", applicant.getEmail()))));
         String code = delivery.await(applicant.getEmail());
         clock.advance(301);
-        assertEquals(400, call(client, "POST", "/api/v1/auth/login/otp/verify", verifyBody(issued.path("challengeId").asText(), applicant.getEmail(), code)).statusCode());
+        assertEquals(400, call(client, "POST", "/api/v1/auth/login/otp/verify", verifyBody(issued.path("challengeId").asString(), applicant.getEmail(), code)).statusCode());
         assertEquals(0, jdbc.queryForObject("SELECT COUNT(*) FROM applicant_access_sessions WHERE applicant_id=?", Integer.class, applicant.getApplicantId()));
     }
 
@@ -446,7 +446,7 @@ class IdentityValidationMySqlTest {
         var client = client();
         assertEquals(200, call(client, "POST", "/api/v1/auth/google", json.writeValueAsString(Map.of("credential", credential, "intent", "LOGIN"))).statusCode());
         assertEquals(applicant.getApplicantId(), applicants.findByGoogleSub(sub).orElseThrow().getApplicantId());
-        assertEquals(applicant.getAffiliateId(), tree(call(client, "GET", "/api/v1/auth/session", null)).path("affiliateId").asText());
+        assertEquals(applicant.getAffiliateId(), tree(call(client, "GET", "/api/v1/auth/session", null)).path("affiliateId").asString());
         assertEquals(1, payments.findByApplicantIdOrderByCreatedAtDesc(applicant.getApplicantId()).size());
         applicant.markRejected("Controlled restriction", clock.instant()); applicants.saveAndFlush(applicant);
         var restricted = client();

@@ -1,0 +1,1143 @@
+/* ============================================================
+   ZayloPe — Earnings Page (ExtraPe Template Structure)
+   Theme & tokens inherit from registrationTokens.css / AuthLayout
+   ============================================================ */
+
+/* ── Page wrapper ─────────────────────────────────────────── */
+.zp-earn-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 18px;
+  text-align: center;
+}
+
+/* ── Error state ──────────────────────────────────────────── */
+.zp-earn-error-box {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+.zp-earn-error-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.zp-earn-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.zp-earn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--zp-radius-full, 9999px);
+  background: var(--zp-valid-bg, #e6fbe0);
+  border: 1px solid var(--zp-valid-border, #79b96c);
+  color: var(--zp-forest, #083d31);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.zp-earn-title {
+  margin: 2px 0 0;
+  font-family: var(--zp-font-heading, 'Manrope', sans-serif);
+  font-size: clamp(22px, 3vw, 27px);
+  font-weight: 700;
+  color: var(--zp-forest, #083d31);
+  line-height: 1.2;
+}
+
+.zp-earn-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: var(--zp-muted, #52665c);
+  line-height: 1.5;
+  max-width: 460px;
+}
+
+/* ── ExtraPe-style Dashboard Tab Bar ──────────────────────── */
+.zp-earn-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  width: 100%;
+  padding: 5px;
+  border-radius: 14px;
+  background: var(--zp-surface-subtle, #f9fbf9);
+  border: 1px solid var(--zp-border, #dce7de);
+  box-sizing: border-box;
+}
+
+.zp-earn-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: var(--zp-muted, #52665c);
+  font-family: var(--zp-font-body, 'Inter', sans-serif);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+}
+.zp-earn-tab:hover {
+  color: var(--zp-forest, #083d31);
+  background: rgba(8, 61, 49, 0.05);
+}
+.zp-earn-tab.is-active {
+  background: var(--zp-forest, #083d31);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(8, 61, 49, 0.16);
+}
+.zp-earn-tab:focus-visible {
+  outline: 2px solid var(--zp-emerald, #008f63);
+  outline-offset: 2px;
+}
+
+/* ── Wallet Hero Card (ExtraPe Balance + Withdraw) ────────── */
+.zp-earn-wallet-hero {
+  width: 100%;
+  background: linear-gradient(145deg, #083d31 0%, #0d5845 65%, #008f63 145%);
+  border-radius: 18px;
+  padding: 20px;
+  color: #ffffff;
+  text-align: left;
+  box-shadow: 0 14px 30px rgba(8, 61, 49, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.zp-earn-wallet-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.zp-earn-wallet-kicker {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(233, 251, 203, 0.78);
+  margin-bottom: 4px;
+}
+
+.zp-earn-wallet-balance {
+  font-family: var(--zp-font-heading, 'Manrope', sans-serif);
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 800;
+  line-height: 1.08;
+  color: #ffffff;
+}
+
+.zp-earn-withdraw-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 42px;
+  padding: 9px 18px;
+  border-radius: 12px;
+  border: none;
+  background: #d4f578;
+  color: #083d31;
+  font-family: var(--zp-font-body, 'Inter', sans-serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 120ms ease, background-color 150ms ease;
+}
+.zp-earn-withdraw-btn:hover { background: #e9fbcb; transform: translateY(-1px); }
+.zp-earn-withdraw-btn:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }
+
+/* Threshold progress bar */
+.zp-earn-threshold {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.zp-earn-threshold-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: rgba(233, 251, 203, 0.85);
+  font-weight: 600;
+}
+.zp-earn-progress-track {
+  width: 100%;
+  height: 7px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+}
+.zp-earn-progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: #d4f578;
+  transition: width 250ms ease;
+}
+
+/* Mini summary strip inside hero */
+.zp-earn-wallet-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+.zp-earn-wallet-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.zp-earn-wallet-mini span {
+  font-size: 11px;
+  color: rgba(233, 251, 203, 0.72);
+}
+.zp-earn-wallet-mini strong {
+  font-family: var(--zp-font-heading, 'Manrope', sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Inline withdraw panel */
+.zp-earn-withdraw-panel {
+  background: rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.zp-earn-withdraw-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #e9fbcb;
+}
+.zp-earn-icon-close {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.zp-earn-withdraw-msg {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Stats grid ───────────────────────────────────────────── */
+.zp-earn-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.zp-earn-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 14px 15px;
+  border-radius: 16px;
+  background: var(--zp-surface-subtle, #f9fbf9);
+  border: 1px solid var(--zp-border, #dce7de);
+  text-align: left;
+  transition: border-color 150ms ease;
+}
+
+.zp-earn-stat-card--accent {
+  background: linear-gradient(145deg, #083d31 0%, #0d5845 70%, #008f63 145%);
+  border-color: transparent;
+  color: #ffffff;
+}
+.zp-earn-stat-card--accent .zp-earn-stat-icon  { color: #d4f578; }
+.zp-earn-stat-card--accent .zp-earn-stat-label { color: rgba(233, 251, 203, 0.78); }
+.zp-earn-stat-card--accent .zp-earn-stat-value { color: #ffffff; }
+.zp-earn-stat-card--accent .zp-earn-stat-sub   { color: rgba(233, 251, 203, 0.65); }
+
+.zp-earn-stat-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.zp-earn-stat-icon {
+  color: var(--zp-emerald, #008f63);
+  display: inline-flex;
+}
+
+.zp-earn-stat-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--zp-muted, #52665c);
+}
+
+.zp-earn-stat-value {
+  font-family: var(--zp-font-heading, 'Manrope', sans-serif);
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 700;
+  color: var(--zp-ink, #142820);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.zp-earn-stat-sub {
+  font-size: 11px;
+  color: var(--zp-muted, #52665c);
+}
+
+/* ── Shared Section Headings ──────────────────────────────── */
+.zp-earn-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+}
+.zp-earn-section-title {
+  margin: 0;
+  font-family: var(--zp-font-heading, 'Manrope', sans-serif);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--zp-forest, #083d31);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.zp-earn-section-sub {
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  color: var(--zp-muted, #52665c);
+  line-height: 1.45;
+  text-align: left;
+}
+
+/* ── Profit Link Converter Card ───────────────────────────── */
+.zp-earn-converter-card,
+.zp-earn-recent-card {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--zp-surface, #ffffff);
+  border: 1px solid var(--zp-border, #dce7de);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.zp-earn-converter-form {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.zp-earn-converter-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 13px;
+  border-radius: 11px;
+  border: 1.5px solid var(--zp-border, #dce7de);
+  background: var(--zp-surface-subtle, #f9fbf9);
+  color: var(--zp-ink, #142820);
+  font-family: var(--zp-font-body, 'Inter', sans-serif);
+  font-size: 13.5px;
+  box-sizing: border-box;
+  transition: border-color 150ms ease;
+}
+.zp-earn-converter-input:focus {
+  outline: none;
+  border-color: var(--zp-emerald, #008f63);
+  background: #ffffff;
+}
+
+.zp-earn-converter-btn {
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 11px;
+  border: none;
+  background: var(--zp-forest, #083d31);
+  color: #ffffff;
+  font-family: var(--zp-font-body, 'Inter', sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 150ms ease;
+}
+.zp-earn-converter-btn:hover { background: #0d5845; }
+.zp-earn-converter-btn:focus-visible { outline: 2px solid var(--zp-emerald, #008f63); outline-offset: 2px; }
+
+.zp-earn-converter-err {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--zp-error, #b42318);
+  font-weight: 500;
+}
+
+.zp-earn-generated-box {
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--zp-valid-bg, #e6fbe0);
+  border: 1px solid var(--zp-valid-border, #79b96c);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.zp-earn-generated-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--zp-forest, #083d31);
+}
+.zp-earn-generated-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.zp-earn-generated-url {
+  flex: 1;
+  min-width: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  color: var(--zp-ink, #142820);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.zp-earn-copy-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 11px;
+  border-radius: 9px;
+  border: 1px solid var(--zp-forest, #083d31);
+  background: var(--zp-forest, #083d31);
+  color: #ffffff;
+  font-family: var(--zp-font-body, 'Inter', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.zp-earn-copy-pill.is-copied {
+  background: var(--zp-emerald, #008f63);
+  border-color: var(--zp-emerald, #008f63);
+}
+
+/* Recent links list */
+.zp-earn-recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.zp-earn-recent-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 11px;
+  background: var(--zp-surface-subtle, #f9fbf9);
+  border: 1px solid var(--zp-border, #dce7de);
+}
+.zp-earn-recent-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+.zp-earn-recent-src {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--zp-ink, #142820);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.zp-earn-recent-out {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--zp-muted, #52665c);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Top Partner Stores Grid (ExtraPe Store Cards) ────────── */
+.zp-earn-stores-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.zp-earn-stores-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.zp-earn-store-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--zp-surface, #ffffff);
+  border: 1px solid var(--zp-border, #dce7de);
+  text-align: left;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+.zp-earn-store-card:hover {
+  border-color: var(--zp-emerald, #008f63);
+  box-shadow: 0 6px 16px rgba(8, 61, 49, 0.06);
+}
+
+.zp-earn-store-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.zp-earn-store-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--zp-forest, #083d31);
+  color: #d4f578;
+  font-family: var(--zp-font-heading, 'Manrope', sans-serif);
+  font-size: 11.5px;
+  font-weight: 800;
+}
+
+.zp-earn-store-tag {
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background: var(--zp-valid-bg, #e6fbe0);
+  color: var(--zp-forest, #083d31);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.zp-earn-store-name {
+  font-family: var(--zp-font-heading, 'Manrope', sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--zp-ink, #142820);
+}
+
+.zp-earn-store-cat {
+  font-size: 11px;
+  color: var(--zp-muted, #52665c);
+}
+
+.zp-earn-store-rate {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--zp-emerald, #008f63);
+  margin-top: 2px;
+}
+
+.zp-earn-store-btn {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  min-height: 34px;
+  padding: 6px 8px;
+  border-radius: 9px;
+  border: 1px solid var(--zp-border, #dce7de);
+  background: var(--zp-surface-subtle, #f9fbf9);
+  color: var(--zp-forest, #083d31);
+  font-family: var(--zp-font-body, 'Inter', sans-serif);
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+.zp-earn-store-btn:hover {
+  border-color: var(--zp-forest, #083d31);
+  background: var(--zp-forest, #083d31);
+  color: #ffffff;
+}
+.zp-earn-store-btn.is-copied {
+  background: var(--zp-emerald, #008f63);
+  border-color: var(--zp-emerald, #008f63);
+  color: #ffffff;
+}
+
+/* ── How It Works (3-Step Strip) ──────────────────────────── */
+.zp-earn-steps-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.zp-earn-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.zp-earn-step-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px;
+  border-radius: 14px;
+  background: var(--zp-surface-subtle, #f9fbf9);
+  border: 1px solid var(--zp-border, #dce7de);
+}
+
+.zp-earn-step-num {
+  font-family: var(--zp-font-heading, 'Manrope', sans-serif);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--zp-emerald, #008f63);
+  letter-spacing: 0.06em;
+}
+
+.zp-earn-step-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--zp-forest, #083d31);
+  line-height: 1.3;
+}
+
+.zp-earn-step-desc {
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--zp-muted, #52665c);
+  line-height: 1.45;
+}
+
+/* ── Payout notice ────────────────────────────────────────── */
+.zp-earn-payout-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 12px;
+  background: var(--zp-warning-bg, #fffbe6);
+  border: 1px solid #e9d57a;
+  font-size: 13.5px;
+  color: var(--zp-warning, #7c4400);
+  text-align: left;
+  box-sizing: border-box;
+}
+.zp-earn-payout-icon {
+  color: #c47c00;
+  flex-shrink: 0;
+}
+
+/* ── Affiliate ID hero card ───────────────────────────────── */
+.zp-earn-id-card {
+  width: 100%;
+  background: linear-gradient(145deg, #083d31 0%, #0d5845 65%, #008f63 145%);
+  border-radius: 18px;
+  padding: 20px;
+  color: #ffffff;
+  text-align: left;
+  box-shadow: 0 14px 30px rgba(8, 61, 49, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.zp-earn-id-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.zp-earn-id-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zp-earn-id-z {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #083d31;
+  font-family: var(--zp-font-heading, 'Manrope', sans-serif);
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.zp-earn-id-brand-text {
+  font-family: var(--zp-font-heading, 'Manrope', sans-serif);
+  font-weight: 700;
+  font-size: 17px;
+  color: #ffffff;
+}
+.zp-earn-id-brand-text span { color: #a5ce76; }
+
+.zp-earn-id-tier {
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #e9fbcb;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.zp-earn-id-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.zp-earn-id-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(233, 251, 203, 0.75);
+}
+
+.zp-earn-id-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.zp-earn-id-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: clamp(18px, 2.8vw, 22px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+/* Copy button (shared for ID + Link) */
+.zp-earn-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 40px;
+  padding: 7px 13px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  font-family: var(--zp-font-body, 'Inter', sans-serif);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 150ms ease, border-color 150ms ease;
+  flex-shrink: 0;
+}
+.zp-earn-copy-btn:hover { background: rgba(255, 255, 255, 0.22); }
+.zp-earn-copy-btn.is-copied { background: #008f63; border-color: #a5ce76; }
+.zp-earn-copy-btn:focus-visible { outline: 2px solid #e9fbcb; outline-offset: 2px; }
+
+/* Referral link block */
+.zp-earn-ref-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.zp-earn-ref-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 8px 10px;
+  flex-wrap: wrap;
+}
+
+.zp-earn-ref-url {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12.5px;
+  color: #e9fbcb;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Share buttons */
+.zp-earn-share-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.zp-earn-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 150ms ease, transform 100ms ease;
+}
+.zp-earn-share-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.zp-earn-share-btn--wa { background: #25d366; color: #ffffff; }
+.zp-earn-share-btn--tg { background: #229ed9; color: #ffffff; }
+
+/* ── Info banner ──────────────────────────────────────────── */
+.zp-earn-info-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 15px;
+  border-radius: 14px;
+  background: var(--zp-surface-subtle, #f9fbf9);
+  border: 1px solid var(--zp-border, #dce7de);
+  text-align: left;
+  font-size: 13.5px;
+  color: var(--zp-muted, #52665c);
+  line-height: 1.45;
+  box-sizing: border-box;
+}
+.zp-earn-info-icon {
+  color: var(--zp-emerald, #008f63);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.zp-earn-info-banner strong {
+  display: block;
+  color: var(--zp-forest, #083d31);
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.zp-earn-info-banner p { margin: 0; }
+
+/* ── Transaction section ──────────────────────────────────── */
+.zp-earn-txn-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.zp-earn-txn-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.zp-earn-txn-title {
+  margin: 0;
+  font-family: var(--zp-font-heading, 'Manrope', sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--zp-forest, #083d31);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Filter pills */
+.zp-earn-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.zp-earn-filter-icon { color: var(--zp-muted, #52665c); }
+
+.zp-earn-filter-btn {
+  padding: 5px 11px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--zp-border, #dce7de);
+  background: var(--zp-surface, #ffffff);
+  color: var(--zp-muted, #52665c);
+  font-family: var(--zp-font-body, 'Inter', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+.zp-earn-filter-btn:hover { border-color: var(--zp-emerald, #008f63); color: var(--zp-forest, #083d31); }
+.zp-earn-filter-btn.is-active {
+  background: var(--zp-forest, #083d31);
+  border-color: var(--zp-forest, #083d31);
+  color: #ffffff;
+}
+.zp-earn-filter-btn:focus-visible { outline: 2px solid var(--zp-emerald, #008f63); outline-offset: 2px; }
+
+/* Table */
+.zp-earn-table {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--zp-border, #dce7de);
+  overflow: hidden;
+}
+
+.zp-earn-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 110px 95px 90px;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  font-size: 13px;
+  color: var(--zp-ink, #142820);
+  border-bottom: 1px solid var(--zp-border, #dce7de);
+}
+.zp-earn-row:last-child { border-bottom: none; }
+
+.zp-earn-row--head {
+  background: var(--zp-surface-subtle, #f9fbf9);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--zp-muted, #52665c);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.zp-earn-row-date   { color: var(--zp-muted, #52665c); font-size: 12.5px; white-space: nowrap; }
+.zp-earn-row-desc   { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.zp-earn-row-ref    { font-family: ui-monospace, monospace; font-size: 12px; color: var(--zp-muted, #52665c); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.zp-earn-row-amount { font-weight: 700; color: var(--zp-forest, #083d31); text-align: right; }
+
+/* Status badges */
+.zp-earn-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  justify-content: center;
+}
+.zp-earn-badge--pending  { background: #fffbe6; color: #7c4400; border: 1px solid #e9d57a; }
+.zp-earn-badge--approved { background: var(--zp-valid-bg, #e6fbe0); color: var(--zp-valid-badge, #08794f); border: 1px solid var(--zp-valid-border, #79b96c); }
+.zp-earn-badge--paid     { background: #e9fbcb; color: #083d31; border: 1px solid #a5ce76; }
+.zp-earn-badge--rejected { background: var(--zp-error-bg, #fff0f1); color: var(--zp-error, #b42318); border: 1px solid var(--zp-error-border, #dc3545); }
+
+/* Empty state */
+.zp-earn-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 36px 20px;
+  border-radius: 14px;
+  background: var(--zp-surface-subtle, #f9fbf9);
+  border: 1px solid var(--zp-border, #dce7de);
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--zp-muted, #52665c);
+  text-align: center;
+}
+.zp-earn-empty-icon  { color: var(--zp-emerald, #008f63); opacity: 0.6; }
+.zp-earn-empty-title { font-size: 15px; font-weight: 700; color: var(--zp-forest, #083d31); margin: 0; }
+.zp-earn-empty-sub   { font-size: 13.5px; margin: 0; line-height: 1.5; max-width: 320px; }
+
+/* Download CSV */
+.zp-earn-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  align-self: flex-end;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--zp-border, #dce7de);
+  background: var(--zp-surface, #ffffff);
+  color: var(--zp-forest, #083d31);
+  font-family: var(--zp-font-body, 'Inter', sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+.zp-earn-download-btn:hover { background: var(--zp-surface-subtle, #f9fbf9); border-color: var(--zp-emerald, #008f63); }
+.zp-earn-download-btn:focus-visible { outline: 2px solid var(--zp-emerald, #008f63); outline-offset: 2px; }
+
+/* ── Footer actions ───────────────────────────────────────── */
+.zp-earn-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.zp-earn-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 48px;
+  padding: 10px 12px;
+  border-radius: var(--zp-control-radius, 12px);
+  font-family: var(--zp-font-body, 'Inter', sans-serif);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: background-color 150ms ease, transform 100ms ease;
+}
+.zp-earn-nav-btn:focus-visible { outline: 2px solid var(--zp-emerald, #008f63); outline-offset: 2px; }
+.zp-earn-nav-btn:active { transform: scale(0.97); }
+
+.zp-earn-nav-btn--primary {
+  background: var(--zp-forest, #083d31);
+  border: 1.5px solid var(--zp-forest, #083d31);
+  color: #ffffff;
+}
+.zp-earn-nav-btn--primary:hover { background: #0d5845; }
+
+.zp-earn-nav-btn--secondary {
+  background: var(--zp-surface, #ffffff);
+  border: 1.5px solid var(--zp-border, #dce7de);
+  color: var(--zp-forest, #083d31);
+}
+.zp-earn-nav-btn--secondary:hover { background: var(--zp-surface-subtle, #f9fbf9); border-color: var(--zp-emerald, #008f63); }
+
+.zp-earn-logout-btn { width: 100%; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .zp-earn-tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .zp-earn-converter-form {
+    flex-direction: column;
+  }
+
+  .zp-earn-stores-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .zp-earn-steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .zp-earn-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .zp-earn-row {
+    grid-template-columns: 85px 1fr 80px;
+    grid-template-rows: auto auto;
+  }
+
+  .zp-earn-row-ref    { display: none; }
+  .zp-earn-row-amount { font-size: 12.5px; }
+  .zp-earn-row--head > *:nth-child(3),
+  .zp-earn-row--head > *:nth-child(4) { display: none; }
+
+  .zp-earn-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+  .zp-earn-logout-btn { grid-column: 1 / -1; }
+
+  .zp-earn-txn-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .zp-earn-wallet-hero,
+  .zp-earn-id-card { padding: 16px; }
+}
+
+@media (max-width: 400px) {
+  .zp-earn-stores-grid,
+  .zp-earn-stats,
+  .zp-earn-actions { grid-template-columns: 1fr; }
+  .zp-earn-wallet-strip { grid-template-columns: 1fr; }
+  .zp-earn-nav-btn--primary,
+  .zp-earn-nav-btn--secondary { grid-column: 1 / -1; }
+}
+
+/* ── Reduced-motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .zp-earn-tab,
+  .zp-earn-withdraw-btn,
+  .zp-earn-progress-fill,
+  .zp-earn-store-btn,
+  .zp-earn-nav-btn,
+  .zp-earn-copy-btn,
+  .zp-earn-share-btn,
+  .zp-earn-filter-btn,
+  .zp-earn-download-btn { transition: none; }
+}
