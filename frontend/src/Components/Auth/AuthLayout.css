@@ -1,0 +1,443 @@
+/* ==========================================================================
+   ZayloPe Unified Single-Column Expanded Authentication Shell
+   Centered white cards over animated pastel gradient & SVG curves,
+   top-left Back-to-home navigation, and WCAG 2.2 AA compliance.
+   ========================================================================== */
+
+@import '../../Pages/Register/registrationTokens.css';
+
+.zp-auth-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: var(--zp-ink);
+  font-family: var(--zp-font-body);
+  overflow-x: clip;
+}
+
+/* Skip link matching public site */
+.zp-skip-link {
+  position: fixed;
+  z-index: 250;
+  left: 16px;
+  top: 8px;
+  padding: 12px 20px;
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-forest);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transform: translateY(-180%);
+}
+
+.zp-skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 3px solid var(--zp-lime);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Top-Left Back-to-Home Navigation Rail (outside card, never overlaps card)
+   -------------------------------------------------------------------------- */
+.zp-auth-topbar {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding: clamp(14px, 2.2vw, 24px) clamp(16px, 3vw, 32px) 4px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.zp-back-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--zp-touch-min);
+  padding: 8px 14px;
+  border-radius: var(--zp-radius-full);
+  color: var(--zp-ink);
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(20, 40, 32, 0.1);
+  backdrop-filter: blur(8px);
+  font-family: var(--zp-font-body);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color var(--zp-transition-fast),
+    border-color var(--zp-transition-fast),
+    transform var(--zp-transition-fast);
+}
+
+.zp-back-home:hover {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(8, 61, 49, 0.25);
+  color: var(--zp-forest);
+}
+
+.zp-back-home:hover .zp-back-home-icon {
+  transform: translateX(-2px);
+}
+
+.zp-back-home-icon {
+  flex-shrink: 0;
+  transition: transform var(--zp-transition-fast);
+}
+
+.zp-back-home:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+/* --------------------------------------------------------------------------
+   Main Content Canvas (Horizontal & Vertical Centering + Natural Scroll)
+   -------------------------------------------------------------------------- */
+.zp-auth-main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(8px, 1.8vw, 20px) clamp(16px, 3vw, 32px) clamp(24px, 3.6vw, 40px);
+  box-sizing: border-box;
+  outline: none;
+}
+
+.zp-auth-content {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.zp-auth-card-register-wrap {
+  max-width: var(--zp-card-max-register, 640px);
+}
+
+.zp-auth-card-compact-wrap {
+  max-width: var(--zp-card-max-compact, 560px);
+}
+
+.zp-auth-card-payment-wrap {
+  max-width: var(--zp-card-max-payment, 680px);
+}
+
+/* --------------------------------------------------------------------------
+   Expanded Centered White Card (24px corners, responsive 24px–48px padding)
+   -------------------------------------------------------------------------- */
+.zp-auth-card {
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px);
+  background: var(--zp-surface);
+  border: 1px solid var(--zp-border);
+  border-radius: var(--zp-radius-card);
+  box-shadow: var(--zp-shadow-card);
+  box-sizing: border-box;
+  animation: zp-card-enter var(--zp-dur-card, 350ms) var(--zp-ease) both;
+}
+
+@keyframes zp-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.zp-auth-card-heading {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Brand Logo rendered standalone inside card without PublicLayout header dependency */
+.zp-auth-card-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.zp-auth-card-logo .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 2px 6px;
+  border-radius: var(--zp-radius-sm);
+  color: var(--zp-ink);
+  text-decoration: none;
+  font-family: var(--zp-font-heading);
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.zp-auth-card-logo .brand:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 3px;
+}
+
+.zp-auth-card-logo .brand-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.zp-auth-card-logo .brand-green {
+  color: var(--zp-emerald);
+}
+
+.zp-auth-card-title {
+  margin: 0 0 8px;
+  color: var(--zp-forest);
+  font-family: var(--zp-font-heading);
+  font-size: clamp(26px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+}
+
+.zp-auth-card-subtitle {
+  margin: 0 auto;
+  max-width: 480px;
+  color: var(--zp-muted);
+  font-family: var(--zp-font-body);
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+
+.zp-auth-card-body {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Focused Form Column Width (<= 400px where Google Sign-In button aligns flush,
+   <= 520px otherwise inside expanded 640px / 560px cards)
+   -------------------------------------------------------------------------- */
+.zp-form-column {
+  width: 100%;
+  max-width: var(--zp-form-google-max, 400px);
+  margin-inline: auto;
+  min-width: 0;
+}
+
+.zp-form-column-wide {
+  width: 100%;
+  max-width: var(--zp-form-inner-max, 520px);
+  margin-inline: auto;
+  min-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Loading & Error States
+   -------------------------------------------------------------------------- */
+.zp-loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 12px;
+  font-size: 14.5px;
+  color: var(--zp-muted);
+}
+
+.zp-loading-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--zp-border);
+  border-top-color: var(--zp-emerald);
+  border-radius: 50%;
+  animation: zp-spin 0.65s linear infinite;
+}
+
+@keyframes zp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Active Session Card */
+.zp-active-session-card {
+  width: 100%;
+  max-width: var(--zp-form-google-max, 400px);
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zp-session-user-avatar {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: var(--zp-mint);
+  color: var(--zp-forest);
+  border: 1.5px solid var(--zp-valid-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  font-weight: 700;
+  font-family: var(--zp-font-heading);
+}
+
+.zp-session-welcome-msg {
+  font-size: 15.5px;
+  color: var(--zp-ink);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.zp-session-user-name {
+  color: var(--zp-forest);
+  font-weight: 700;
+}
+
+.zp-session-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Minimal Footer Outside Card (High contrast over pastel gradient)
+   -------------------------------------------------------------------------- */
+.zp-auth-footer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.zp-auth-security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--zp-text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.zp-auth-security-badge svg {
+  width: 15px;
+  height: 15px;
+  color: var(--zp-forest);
+}
+
+.zp-auth-support-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px 10px;
+  font-size: 13px;
+}
+
+.zp-auth-support-link {
+  color: var(--zp-ink);
+  font-weight: 600;
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  border-radius: var(--zp-radius-sm);
+  transition: color var(--zp-transition-fast), background-color var(--zp-transition-fast);
+}
+
+.zp-auth-support-link:hover {
+  color: var(--zp-forest);
+  text-decoration: underline;
+}
+
+.zp-auth-support-link:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+}
+
+.zp-auth-footer-dot {
+  color: var(--zp-text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints (1024px+ desktop -> 768px tablet -> 480px mobile -> 320px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .zp-auth-main {
+    justify-content: flex-start;
+    padding-top: 10px;
+  }
+
+  .zp-auth-card {
+    padding: clamp(24px, 5vw, 36px);
+  }
+}
+
+@media (max-width: 520px) {
+  .zp-auth-topbar {
+    padding: 12px 16px 4px;
+  }
+
+  .zp-auth-main {
+    padding: 8px 16px 28px;
+  }
+
+  .zp-auth-card {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .zp-auth-card-title {
+    font-size: 26px;
+  }
+
+  .zp-auth-card-subtitle {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .zp-auth-topbar {
+    padding: 10px 14px 4px;
+  }
+
+  .zp-auth-main {
+    padding: 6px 14px 24px;
+  }
+
+  .zp-auth-card {
+    padding: 22px 16px;
+    border-radius: 18px;
+  }
+
+  .zp-auth-card-title {
+    font-size: 24px;
+  }
+}/* Reusable confirmed-ownership success mark; no hover dependency. */
+.zp-auth-success { display:inline-flex; align-items:center; justify-content:center; width:60px; height:60px; border-radius:50%; background:var(--zp-valid-bg); border:2px solid var(--zp-valid-border); color:var(--zp-emerald); }
+.zp-auth-card .zp-auth-success.is-animated { animation:zp-auth-confirmed 450ms ease-out both; }
+@keyframes zp-auth-confirmed { from {opacity:0;transform:scale(.85)} to {opacity:1;transform:scale(1)} }
+@media(prefers-reduced-motion:reduce) { .zp-auth-card .zp-auth-success.is-animated {animation:none;} }

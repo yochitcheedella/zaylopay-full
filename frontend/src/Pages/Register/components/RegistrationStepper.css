@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Compact Five-Segment Registration Progress Indicator
+   ========================================================================== */
+
+.zp-segment-stepper {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto 18px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.zp-segment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.zp-segment-counter {
+  font-family: var(--zp-font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.45px;
+  text-transform: uppercase;
+  color: var(--zp-accent-text);
+}
+
+.zp-segment-title {
+  font-family: var(--zp-font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--zp-ink);
+}
+
+.zp-segment-track {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.zp-segment-pill {
+  flex: 1 1 0%;
+  display: flex;
+  align-items: center;
+  min-height: 24px;
+  border: none;
+  padding: 9px 0;
+  margin: 0;
+  background: transparent;
+  cursor: default;
+  border-radius: 4px;
+}
+
+.zp-segment-inner-fill {
+  display: block;
+  width: 100%;
+  height: 5px;
+  border-radius: 3px;
+  background-color: var(--zp-border);
+  transition: background-color var(--zp-dur-step, 250ms) var(--zp-ease),
+    transform var(--zp-dur-step, 250ms) var(--zp-ease);
+}
+
+.zp-segment-pill.is-clickable {
+  cursor: pointer;
+}
+
+.zp-segment-pill.is-clickable:hover .zp-segment-inner-fill {
+  transform: scaleY(1.3);
+}
+
+.zp-segment-pill:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+}
+
+.zp-segment-pill.is-completed .zp-segment-inner-fill {
+  background-color: var(--zp-emerald);
+}
+
+.zp-segment-pill.is-active .zp-segment-inner-fill {
+  background-color: var(--zp-forest);
+}
+
+.zp-segment-pill.is-pending .zp-segment-inner-fill {
+  background-color: var(--zp-border);
+}
+
+@media (max-width: 480px) {
+  .zp-segment-stepper {
+    margin-bottom: 14px;
+  }
+
+  .zp-segment-counter {
+    font-size: 11.5px;
+  }
+
+  .zp-segment-title {
+    font-size: 12.5px;
+  }
+}

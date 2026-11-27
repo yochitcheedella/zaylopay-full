@@ -1,0 +1,267 @@
+/* ==========================================================================
+   Application Confirmation Step Styling (Harmonized with ZayloPe Site Theme)
+   ========================================================================== */
+
+.zp-confirmation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.zp-confirm-badge-wrap {
+  margin: 8px 0 16px;
+}
+
+.zp-confirm-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  border-radius: var(--zp-radius-full);
+  background: var(--zp-mint);
+  color: var(--zp-forest);
+}
+
+.zp-confirm-svg {
+  width: 48px;
+  height: 48px;
+}
+
+.zp-confirm-circle {
+  stroke-dasharray: 140;
+  stroke-dashoffset: 0;
+  animation: zp-circle-anim 0.6s ease-out;
+}
+
+.zp-confirm-check {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 0;
+  animation: zp-check-anim 0.4s 0.3s ease-out both;
+}
+
+@keyframes zp-circle-anim {
+  from { stroke-dashoffset: 140; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes zp-check-anim {
+  from { stroke-dashoffset: 40; }
+  to { stroke-dashoffset: 0; }
+}
+
+.zp-confirm-title {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--zp-forest);
+  font-family: var(--zp-font-heading);
+  letter-spacing: -0.035em;
+}
+
+.zp-confirm-subtitle {
+  margin: 0 0 24px;
+  font-size: 14.5px;
+  color: var(--zp-muted);
+  font-family: var(--zp-font-body);
+  line-height: 1.55;
+  max-width: 460px;
+}
+
+/* Reference Card */
+.zp-confirm-card {
+  width: 100%;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-warm);
+  border: 1px solid var(--zp-border);
+  box-shadow: var(--zp-shadow-sm);
+  text-align: left;
+}
+
+.zp-confirm-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.zp-confirm-label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--zp-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+  font-family: var(--zp-font-body);
+}
+
+.zp-confirm-ref-val {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zp-ref-number {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--zp-forest);
+  letter-spacing: 0.05em;
+  font-family: monospace, sans-serif;
+}
+
+.zp-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: var(--zp-radius-sm);
+  border: 1px solid var(--zp-control-border);
+  background: #ffffff;
+  color: var(--zp-muted);
+  cursor: pointer;
+  transition: border-color var(--zp-transition-fast), color var(--zp-transition-fast);
+}
+
+.zp-copy-btn:hover {
+  border-color: var(--zp-emerald);
+  color: var(--zp-forest);
+}
+
+.zp-copy-btn:focus-visible {
+  outline: 2px solid var(--zp-emerald);
+}
+
+.zp-copied-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--zp-accent-text);
+}
+
+.zp-confirm-status-pill {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: var(--zp-radius-full);
+  background: var(--zp-mint);
+  border: 1px solid var(--zp-emerald);
+  color: var(--zp-forest);
+  font-size: 12.5px;
+  font-weight: 700;
+  font-family: var(--zp-font-body);
+}
+
+/* Timeline */
+.zp-timeline-section {
+  width: 100%;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.zp-timeline-title {
+  margin: 0 0 14px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--zp-forest);
+  font-family: var(--zp-font-heading);
+}
+
+.zp-timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.zp-timeline-list::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 13px;
+  width: 2px;
+  background: var(--zp-border);
+}
+
+.zp-timeline-step {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.zp-timeline-marker {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--zp-radius-full);
+  background: #ffffff;
+  border: 2px solid var(--zp-border);
+  color: var(--zp-muted);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  font-family: var(--zp-font-body);
+}
+
+.zp-timeline-step.is-active .zp-timeline-marker {
+  background: var(--zp-forest);
+  border-color: var(--zp-forest);
+  color: #ffffff;
+}
+
+.zp-timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.zp-timeline-content strong {
+  font-size: 13.5px;
+  color: var(--zp-forest);
+  font-family: var(--zp-font-heading);
+}
+
+.zp-timeline-content p {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--zp-muted);
+  line-height: 1.45;
+}
+
+/* Actions */
+.zp-confirm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.zp-confirm-help {
+  margin: 18px 0 0;
+  font-size: 12.5px;
+  color: var(--zp-muted);
+}
+
+.zp-confirm-help a {
+  color: var(--zp-accent-text);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .zp-confirm-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

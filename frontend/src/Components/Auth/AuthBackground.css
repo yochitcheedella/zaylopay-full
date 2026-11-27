@@ -1,0 +1,180 @@
+/* ==========================================================================
+   AuthBackground — Animated Pastel Gradient & Thin Looping SVG Curves
+   Stationary form foreground; GPU-only transform + opacity motion.
+   ========================================================================== */
+
+.zp-auth-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: linear-gradient(
+    140deg,
+    var(--zp-bg-lime) 0%,
+    var(--zp-bg-sage) 52%,
+    var(--zp-bg-mint) 100%
+  );
+}
+
+.zp-auth-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Soft lime glow near top centre */
+.zp-auth-bg-glow-lime {
+  width: 86vw;
+  max-width: 1120px;
+  height: 58vh;
+  max-height: 560px;
+  top: -18vh;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(233, 251, 203, 0.96) 0%,
+    rgba(233, 251, 203, 0.45) 48%,
+    rgba(233, 251, 203, 0) 76%
+  );
+  animation: zp-glow-lime var(--zp-dur-gradient, 20s) ease-in-out 1 alternate forwards;
+}
+
+/* Muted sage green field towards right */
+.zp-auth-bg-glow-sage {
+  width: 68vw;
+  max-width: 920px;
+  height: 76vh;
+  top: 12vh;
+  right: -16vw;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(209, 226, 201, 0.92) 0%,
+    rgba(209, 226, 201, 0.42) 52%,
+    rgba(209, 226, 201, 0) 78%
+  );
+  animation: zp-glow-sage 22s ease-in-out 1 alternate forwards;
+}
+
+/* Soft mint green field at bottom left */
+.zp-auth-bg-glow-mint {
+  width: 72vw;
+  max-width: 960px;
+  height: 68vh;
+  bottom: -18vh;
+  left: -14vw;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(191, 213, 196, 0.95) 0%,
+    rgba(191, 213, 196, 0.45) 54%,
+    rgba(191, 213, 196, 0) 78%
+  );
+  animation: zp-glow-mint 24s ease-in-out 1 alternate forwards;
+}
+
+.zp-auth-bg-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.zp-curve-group {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.zp-curve-tl {
+  animation: zp-curve-float-tl var(--zp-dur-curve, 10s) ease-in-out 1 alternate forwards;
+}
+
+.zp-curve-br {
+  animation: zp-curve-float-br 12s ease-in-out 1 alternate forwards;
+}
+
+.zp-curve-tr,
+.zp-curve-bl {
+  animation: zp-curve-float-edge 11s ease-in-out 1 alternate forwards;
+}
+
+@keyframes zp-glow-lime {
+  0% {
+    transform: translate3d(-50%, 0, 0) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(-47%, 18px, 0) scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes zp-glow-sage {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(-24px, -16px, 0) scale(1.05);
+    opacity: 0.98;
+  }
+}
+
+@keyframes zp-glow-mint {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.88;
+  }
+  100% {
+    transform: translate3d(22px, -14px, 0) scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes zp-curve-float-tl {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(8px, 10px, 0) rotate(1.1deg);
+  }
+}
+
+@keyframes zp-curve-float-br {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-10px, -10px, 0) rotate(-1.2deg);
+  }
+}
+
+@keyframes zp-curve-float-edge {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(5px, -6px, 0);
+  }
+}
+
+@media (max-width: 767px) {
+  .zp-curve-group path {
+    stroke-opacity: 0.58;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zp-auth-bg-glow,
+  .zp-curve-group {
+    animation: none !important;
+  }
+}
+
+/* Decorative motion ends without requiring a pause control. */
+.zp-auth-bg-glow, .zp-curve-group { animation-duration: 4s; animation-iteration-count: 1; }

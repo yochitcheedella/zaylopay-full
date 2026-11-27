@@ -1,0 +1,1763 @@
+
+/* =================================
+   GLOBAL
+================================= */
+
+.z-dashboard,
+.z-dashboard * {
+    box-sizing: border-box;
+}
+
+.z-dashboard {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    background: #ffffff;
+    color: #263238;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =================================
+   SIDEBAR COLUMN
+================================= */
+
+.z-sidebar-column {
+    width: clamp(224px, 21vw, 320px);
+    height: calc(100vh - 20px);
+    margin: 0 0 20px 25px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+    /* Only scrolling change */
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    z-index: 20;
+}
+
+/* BRAND ABOVE SIDEBAR */
+
+.z-sidebar-brand {
+    width: 100%;
+    height: 75px;
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    background: #ffffff;
+    border: 1px solid #e9edf0;
+    border-bottom: none;
+    border-radius: 22px 22px 0 0;
+}
+
+.z-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #142d3b;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.z-brand > span:last-child > span {
+    color: #12a94b;
+}
+
+.z-brand-icon {
+    width: 34px;
+    height: 34px;
+    background: #12a94b;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 23px;
+    flex-shrink: 0;
+}
+
+/* =================================
+   SIDEBAR
+================================= */
+
+.z-sidebar {
+    width: 100%;
+    min-width: 0;
+    height: calc(100% - 75px);
+
+    /* Only scrolling change */
+    position: relative;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 20px;
+    margin: 0;
+    background: #ffffff;
+    border: 1px solid #e9edf0;
+    border-top: none;
+    border-radius: 0 0 22px 22px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+    flex-shrink: 0;
+}
+
+.z-sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.z-sidebar::-webkit-scrollbar-thumb {
+    background: #dce9e4;
+    border-radius: 10px;
+}
+
+/* PROFILE CARD */
+
+.z-profile-card {
+    background: linear-gradient(135deg,#e5f8f5,#f2fbfa);
+    border: 1px solid #cceee8;
+    border-radius: 21px;
+    padding: 26px 12px 24px;
+    text-align: center;
+    margin: 0 -20px 22px;
+}
+
+.z-profile-avatar {
+    width: 90px;
+    height: 90px;
+    background: #ffffff;
+    color: #08b99c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 13px;
+    font-size: 43px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,190,160,0.15);
+}
+
+.z-profile-card p {
+    font-size: 14px;
+    color: #82969a;
+    margin: 0 0 5px;
+}
+
+.z-profile-card h4 {
+    overflow-wrap: anywhere;
+    font-size: 19px;
+    color: #203b45;
+    margin: 0;
+}
+
+/* NAVIGATION MENU */
+
+.z-side-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.z-menu-item {
+    width: 100%;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 12px 17px;
+    border: none;
+    border-radius: 13px;
+    background: transparent;
+    color: #40536a;
+    font-size: 17px;
+    font-weight: 400;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.z-menu-icon {
+    width: 25px;
+    min-width: 25px;
+    text-align: center;
+    font-size: 23px;
+    color: #929eaa;
+}
+
+.z-menu-item:hover {
+    background: #effaf7;
+    color: #08a989;
+}
+
+.z-menu-item.selected {
+    background: linear-gradient(110deg,#08bea2,#08c9a9);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 8px 17px rgba(0,190,160,0.25);
+}
+
+.z-menu-item.selected .z-menu-icon {
+    color: #ffffff;
+}
+
+/* LOGOUT */
+
+.z-logout {
+    margin-top: auto;
+    padding: 14px 17px;
+    border: none;
+    background: #fff1f1;
+    color: #d84c4c;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+/* =================================
+   MAIN AREA
+================================= */
+
+.z-main-area {
+    flex: 1;
+    min-width: 0;
+}
+
+/* =================================
+   TOP NAVIGATION BAR
+================================= */
+
+.z-topbar {
+    width: 100%;
+    height: 75px;
+    min-height: 75px;
+    padding: 0 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* SEARCH BAR - MORE VISIBLE */
+
+.z-search {
+    width: 38%;
+    max-width: 450px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+
+    background: #f0f3f2;
+    border: 1px solid #cbd8d2;
+    border-radius: 8px;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.z-search span {
+    font-size: 21px;
+    color: #52665d;
+}
+
+.z-search input {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #263b32;
+    font-size: 16px;
+}
+
+.z-search:focus-within, .z-dashboard button:focus-visible, .z-brand:focus-visible {
+    outline: 3px solid var(--zp-forest, #093d31);
+    outline-offset: 2px;
+}
+
+.z-sidebar-toggle { display: none; }
+.z-profile-name {
+    max-width: 12ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.z-search input::placeholder {
+    color: #526158;
+    opacity: 1;
+}
+
+.z-top-actions {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.z-top-actions button {
+    min-width: 44px;
+    min-height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.z-addon-button {
+    color: #15a96b;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.z-addon-button span {
+    font-size: 19px;
+    margin-right: 4px;
+}
+
+.z-earnings-button {
+    color: #33443b;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.z-earnings-button span:first-child {
+    color: #13b879;
+    margin-right: 5px;
+}
+
+.z-notification {
+    font-size: 21px;
+    color: #5d6c64;
+    position: relative;
+}
+
+.z-notification-count {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    background: #ed4b5a;
+    color: #ffffff;
+    font-size: 9px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.z-top-profile {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #4b5a52;
+    font-size: 13px;
+}
+
+.z-small-avatar {
+    width: 30px;
+    height: 30px;
+    background: #e1f7e9;
+    color: #12a94b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* =================================
+   PAGE CONTENT
+================================= */
+
+.z-content {
+    width: 100%;
+    padding: 20px 17px 0;
+    overflow: hidden;
+}
+
+/* =================================
+   PROMOTIONAL BANNER
+================================= */
+
+.z-banner-section {
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+    gap: 3px 0;
+    width: 100%;
+}
+
+.z-banner {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    min-height: 165px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 23px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    color: #ffffff;
+    transition: background 0.3s;
+}
+
+.banner-one {
+    background: linear-gradient(110deg,#102f39,#12a96b);
+}
+
+.banner-two {
+    background: linear-gradient(110deg,#172d57,#4278bd);
+}
+
+.banner-three {
+    background: linear-gradient(110deg,#4c236b,#bd5a9a);
+}
+
+.z-banner-content {
+    position: relative;
+    z-index: 1;
+    max-width: 65%;
+}
+
+.z-banner-tag {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    opacity: 0.85;
+}
+
+.z-banner h1 {
+    font-size: clamp(20px,2.5vw,31px);
+    margin: 10px 0 7px;
+}
+
+.z-banner p {
+    font-size: 13px;
+    margin: 0 0 15px;
+}
+
+.z-banner-content button {
+    min-height: 44px;
+    background: #ffffff;
+    color: #119c62;
+    border: none;
+    border-radius: 5px;
+    padding: 9px 16px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.z-banner-art {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 48px;
+    transform: rotate(-8deg);
+}
+
+.z-banner-art span:nth-child(2) {
+    font-size: 65px;
+    color: #ffe08a;
+}
+
+.z-banner-arrow {
+    grid-row: 2;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: #ffffff;
+    color: #33443b;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px #00000020;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.z-banner-arrow.left {
+    grid-column: 1;
+}
+
+.z-banner-arrow.right {
+    grid-column: 3;
+}
+
+.z-banner-dots {
+    grid-area: 2 / 2;
+    display: flex;
+    justify-content: center;
+}
+
+.z-banner-dots button {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.z-banner-dots button::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d4dcd7;
+}
+
+.z-banner-dots button.active::before {
+    width: 19px;
+    border-radius: 10px;
+    background: #13b879;
+}
+
+/* =================================
+   TUTORIAL CARDS
+================================= */
+
+.z-tutorial-section {
+    margin: 15px 0 24px;
+    overflow: hidden;
+}
+
+.z-horizontal-cards {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 9px;
+}
+
+.z-tutorial-card {
+    min-width: 0;
+    border: none;
+    background: transparent;
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.z-tutorial-image {
+    height: 105px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #ffffff;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.tutorial-one {
+    background: linear-gradient(140deg,#075e4b,#0b3b3d);
+}
+
+.tutorial-two {
+    background: linear-gradient(140deg,#092e55,#10234c);
+}
+
+.tutorial-three {
+    background: linear-gradient(140deg,#35105c,#4b146e);
+}
+
+.tutorial-four {
+    background: linear-gradient(140deg,#261052,#401071);
+}
+
+.z-tutorial-symbol {
+    width: 30px;
+    height: 23px;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #15aa72;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    margin-bottom: 7px;
+}
+
+.z-tutorial-image h3 {
+    font-size: 15px;
+    margin: 0;
+}
+
+.z-tutorial-card > p {
+    color: #526158;
+    font-size: 13px;
+    line-height: 1.4;
+    margin: 7px 0 0;
+}
+
+/* =================================
+   SECTION HEADINGS
+================================= */
+
+.z-section {
+    margin: 23px 0;
+}
+
+.z-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.z-section-heading h2 {
+    font-size: 17px;
+    color: #273b32;
+    margin: 0;
+}
+
+.z-section-heading > button {
+    min-height: 44px;
+    border: none;
+    background: #eaf8f0;
+    color: #12a96b;
+    border-radius: 5px;
+    padding: 7px 11px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* =================================
+   TRENDING STORES
+================================= */
+
+.z-store-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(min(100%, 140px),1fr));
+    gap: 10px;
+}
+
+.z-store-card {
+    min-width: 0;
+    min-height: 155px;
+    padding: 15px 8px 10px;
+    border: 1px solid #f0f2f0;
+    border-radius: 9px;
+    text-align: center;
+    background: #ffffff;
+    transition: 0.2s;
+}
+
+.z-store-card:hover {
+    box-shadow: 0 4px 15px #0000000d;
+    transform: translateY(-2px);
+}
+
+.z-store-logo {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.amazon {
+    color: #222222;
+}
+
+.flipkart {
+    color: #2874f0;
+}
+
+.ajio {
+    color: #242424;
+    letter-spacing: 2px;
+}
+
+.myntra {
+    color: #ed3986;
+    font-size: 29px;
+}
+
+.shopsy {
+    color: #e46a34;
+    font-size: 14px;
+}
+
+.dotkey {
+    color: #333333;
+    font-size: 13px;
+}
+
+.zaylo {
+    background: #e8f5ef;
+    color: #16865b;
+    font-weight: 800;
+    font-size: 28px;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    margin: 0 auto 8px;
+}
+
+.z-store-card h4 {
+    margin: 5px 0;
+    font-size: 12px;
+    color: #39453e;
+}
+
+.z-store-card p {
+    font-size: 10px;
+    color: #8a958d;
+    margin: 7px 0;
+}
+
+.z-store-actions {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 9px;
+}
+
+.z-store-actions button {
+    min-width: 44px;
+    min-height: 44px;
+    border: none;
+    border-radius: 5px;
+    background: #13c77c;
+    color: #ffffff;
+    padding: 7px 14px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.z-store-actions .z-share-icon {
+    padding: 6px 9px;
+    background: #ffffff;
+    color: #13b879;
+    border: 1px solid #ccefe0;
+}
+
+/* =================================
+   EARNING ALERT
+================================= */
+
+.z-earning-alert {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 19px;
+    border-radius: 12px;
+    background: linear-gradient(100deg,#f0e8ff,#f9efff);
+    margin: 25px 0;
+}
+
+.z-alert-icon {
+    width: 48px;
+    height: 48px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.z-alert-content {
+    flex: 1;
+}
+
+.z-alert-content h2 {
+    font-size: 17px;
+    margin: 0 0 7px;
+    color: #3b3152;
+}
+
+.z-alert-content p {
+    font-size: 12px;
+    margin: 0;
+    color: #81768d;
+    line-height: 1.5;
+}
+
+.z-earning-alert > button {
+    min-height: 44px;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    background: #13c77c;
+    color: #ffffff;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* =================================
+   SALE CALENDAR
+================================= */
+
+.z-calendar-card {
+    border: 1px solid #e9efeb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.z-calendar-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px;
+    background: #eafaf2;
+}
+
+.z-calendar-title h3 {
+    font-size: 15px;
+    margin: 0 0 6px;
+}
+
+.z-calendar-title p {
+    font-size: 11px;
+    color: #77877d;
+    margin: 0;
+}
+
+.z-calendar-title > span {
+    font-size: 25px;
+}
+
+.z-calendar-empty {
+    padding: 25px 15px;
+    color: #929c95;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* =================================
+   FLASH DEALS
+================================= */
+
+.z-deal-placeholder {
+    padding: 30px 15px;
+    text-align: center;
+    background: #f7faf8;
+    border-radius: 10px;
+}
+
+.z-deal-placeholder > div {
+    font-size: 35px;
+}
+
+.z-deal-placeholder h3 {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.z-deal-placeholder p {
+    font-size: 12px;
+    color: #849087;
+    margin: 0;
+}
+
+/* =================================
+   OTHER SIDEBAR PAGES
+================================= */
+
+.z-other-page {
+    min-height: 500px;
+    padding: 15px;
+}
+
+.z-other-page h2 {
+    font-size: 21px;
+}
+
+.z-other-page > p {
+    color: #89938d;
+    font-size: 13px;
+}
+
+.z-other-placeholder {
+    margin-top: 25px;
+    padding: 55px 15px;
+    border: 1px solid #edf0ed;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.z-other-placeholder > span {
+    font-size: 40px;
+}
+
+.z-other-placeholder h3 {
+    font-size: 17px;
+}
+
+.z-other-placeholder p {
+    color: #89938d;
+    font-size: 12px;
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+.z-dashboard-footer {
+    padding: 22px 10px;
+    text-align: center;
+    font-size: 11px;
+    color: #929a95;
+    border-top: 1px solid #f0f0f0;
+    margin-top: 30px;
+}
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 1050px) {
+
+    .z-topbar {
+        padding: 0 15px;
+        gap: 10px;
+    }
+
+    .z-top-actions {
+        gap: 9px;
+    }
+
+    .z-banner-art {
+        font-size: 35px;
+    }
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (width < 1024px) {
+
+    .z-dashboard {
+        display: block;
+    }
+
+    .z-sidebar-column {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        margin: 0;
+
+        /* Disable desktop sticky behavior on mobile */
+        position: relative;
+        top: auto;
+    }
+
+    .z-sidebar-brand {
+        justify-content: space-between;
+        height: 60px;
+        min-height: 60px;
+        padding: 0 15px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    .z-brand {
+        font-size: 21px;
+    }
+
+    .z-brand-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+    }
+
+    .z-sidebar {
+        width: 100%;
+        height: auto;
+        min-width: 0;
+        position: relative;
+        top: 0;
+        margin: 0;
+        padding: 12px;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid #eeeeee;
+        box-shadow: none;
+        overflow: visible;
+    }
+
+    .z-profile-card {
+        display: none;
+    }
+
+    .z-side-menu {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 142px), 1fr));
+    }
+
+    .z-menu-item {
+        min-width: 0;
+        min-height: 44px;
+        padding: 9px 13px;
+        font-size: 13px;
+        gap: 8px;
+    }
+
+    .z-menu-icon {
+        font-size: 17px;
+        width: 19px;
+        min-width: 19px;
+    }
+
+    .z-logout {
+        margin-top: 8px;
+    }
+
+    .z-sidebar-toggle {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding-inline: 15px;
+        border: 1px solid var(--zp-border, #dde6df);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--zp-forest, #093d31);
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .z-sidebar[data-open="false"] { display: none; }
+    .z-sidebar[data-open="true"] {
+        max-height: calc(100dvh - 60px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+}
+
+@media (max-width: 700px) {
+    .z-topbar {
+        height: auto;
+        min-height: 60px;
+        padding: 10px;
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    .z-search {
+        order: 3;
+        width: 100%;
+        max-width: none;
+    }
+
+    .z-top-actions {
+        margin-left: auto;
+        gap: 8px;
+    }
+
+    .z-addon-button {
+        display: none;
+    }
+
+    .z-profile-name { display: none; }
+
+    .z-content {
+        padding: 15px 10px 0;
+    }
+
+    .z-banner {
+        min-height: 145px;
+        padding: 18px;
+    }
+
+    .z-banner-content {
+        max-width: 75%;
+    }
+
+    .z-banner h1 {
+        font-size: 20px;
+    }
+
+    .z-banner p {
+        font-size: 11px;
+    }
+
+    .z-banner-art {
+        font-size: 23px;
+        gap: 3px;
+    }
+
+    .z-banner-art span:nth-child(2) {
+        font-size: 35px;
+    }
+
+    .z-horizontal-cards {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+
+    .z-tutorial-image {
+        height: 95px;
+    }
+
+    .z-store-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+
+    .z-earning-alert {
+        flex-wrap: wrap;
+    }
+
+    .z-earning-alert > button {
+        width: 100%;
+    }
+}
+
+/* =================================
+   SMALL MOBILE
+================================= */
+
+@media (max-width: 380px) {
+
+    .z-top-actions {
+        gap: 5px;
+    }
+
+    .z-banner-art {
+        display: none;
+    }
+
+    .z-banner-content {
+        max-width: 100%;
+    }
+}
+
+/* SALE CALENDAR */
+
+.z-sale-section {
+    width: 100%;
+    margin: 25px 0;
+    padding: 25px 3%;
+    border-radius: 12px;
+    background-color: #65dcb3;
+    background-image:
+        repeating-linear-gradient(
+            135deg,
+            transparent 0px,
+            transparent 75px,
+            rgba(255,255,255,0.07) 76px,
+            rgba(255,255,255,0.07) 110px
+        ),
+        linear-gradient(120deg, #55d8ae, #72d9b7);
+}
+
+.z-sale-heading {
+    color: #fff1a8;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 25px;
+}
+
+.z-sale-table {
+    width: 100%;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.08);
+}
+
+.z-sale-table-header,
+.z-sale-row {
+    display: grid;
+    grid-template-columns: 62% 38%;
+}
+
+.z-sale-table-header {
+    background: #e7e0ff;
+    color: #111;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.z-sale-table-header > div {
+    padding: 20px 30px;
+    border-right: 1px solid #c9c3d8;
+}
+
+.z-sale-row {
+    min-height: 88px;
+    border-top: 1px solid #dedede;
+    align-items: stretch;
+}
+
+.z-sale-brand {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 12px 25px;
+    border-right: 1px solid #dedede;
+}
+
+.z-sale-logo {
+    width: 115px;
+    min-width: 115px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+}
+
+.z-sale-logo.zaylo {
+    color: #548d7c;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.z-sale-details h4 {
+    margin: 0 0 8px;
+    color: #171717;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.z-sale-details p {
+    margin: 0;
+    color: #858585;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.z-live-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    min-width: 9px;
+    border-radius: 50%;
+    background: #a9e9df;
+}
+
+.z-live-text {
+    color: #00b99b;
+    font-size: 16px;
+}
+
+.z-sale-date {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 15px 30px;
+}
+
+@media (max-width: 700px) {
+    .z-sale-section {
+        padding: 18px 12px;
+    }
+
+    .z-sale-heading {
+        font-size: 23px;
+    }
+
+    .z-sale-table-header,
+    .z-sale-row {
+        grid-template-columns: 65% 35%;
+    }
+
+    .z-sale-table-header > div {
+        padding: 14px 10px;
+        font-size: 14px;
+    }
+
+    .z-sale-brand {
+        gap: 8px;
+        padding: 10px 7px;
+    }
+
+    .z-sale-logo {
+        width: 55px;
+        min-width: 55px;
+        font-size: 11px;
+    }
+
+    .z-sale-details h4 {
+        font-size: 12px;
+    }
+
+    .z-sale-details p,
+    .z-live-text {
+        font-size: 11px;
+    }
+
+    .z-sale-date {
+        padding: 10px;
+        gap: 5px;
+    }
+}
+/* ZayloPe logo alignment */
+
+.z-sale-logo.zaylo {
+    width: 115px;
+    min-width: 115px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    color: #548d7c;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+@media (max-width: 700px) {
+    .z-sale-logo.zaylo {
+        width: 55px;
+        min-width: 55px;
+        font-size: 10px;
+        letter-spacing: -0.5px;
+    }
+}
+
+/* FLASH DEALS */
+
+.z-flash-section {
+    margin: 30px 0;
+}
+
+.z-flash-section .z-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.z-flash-section .z-section-heading h2 {
+    font-size: 22px;
+    color: #263238;
+    margin: 0;
+}
+
+.z-flash-section .z-section-heading button {
+    color: #548d7c;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.z-flash-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.z-flash-card {
+    min-height: 180px;
+    padding: 22px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #e8eeeb;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+}
+
+.z-flash-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.z-flash-card h3 {
+    font-size: 17px;
+    margin: 0 0 9px;
+    color: #263238;
+}
+
+.z-flash-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #777;
+    margin: 0 0 14px;
+}
+
+.z-flash-card span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #548d7c;
+}
+
+@media (max-width: 700px) {
+    .z-flash-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* MOST SHARED DEALS */
+
+.z-most-shared-section {
+    margin: 30px 0;
+}
+
+.z-most-shared-section .z-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.z-most-shared-section .z-section-heading h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #263238;
+}
+
+.z-most-shared-section .z-section-heading button {
+    color: #548d7c;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.z-shared-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.z-shared-card {
+    background: #fff;
+    border: 1px solid #e7eeea;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+}
+
+.z-shared-image {
+    height: 155px;
+    background: #f0f6f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.z-shared-image > span {
+    font-size: 55px;
+}
+
+.z-shared-image small {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #548d7c;
+    color: white;
+    padding: 5px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+.z-shared-info {
+    padding: 17px;
+}
+
+.z-shared-info h3 {
+    font-size: 16px;
+    color: #263238;
+    margin: 0 0 8px;
+}
+
+.z-shared-info p {
+    color: #888;
+    font-size: 13px;
+    margin: 0 0 16px;
+}
+
+.z-shared-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+}
+
+.z-shared-bottom span {
+    color: #777;
+    font-size: 12px;
+}
+
+.z-shared-bottom strong {
+    color: #548d7c;
+    font-size: 12px;
+}
+
+@media (max-width: 700px) {
+    .z-shared-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .z-shared-image {
+        height: 140px;
+    }
+}
+
+/* ==========================================================================
+   Affiliate Partner Credentials & Referral Card
+   ========================================================================== */
+
+.z-affiliate-hero-card {
+    background: linear-gradient(135deg, #083d31 0%, #0d5c48 100%);
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #ffffff;
+    box-shadow: 0 10px 25px -5px rgba(8, 61, 49, 0.25);
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.z-affiliate-hero-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 1.25rem;
+}
+
+.z-affiliate-title-group h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0.35rem 0 0 0;
+    color: #ffffff;
+}
+
+.z-affiliate-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: #d4f578;
+    color: #083d31;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    display: inline-block;
+}
+
+.z-affiliate-id-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    align-items: flex-start;
+}
+
+.z-affiliate-id-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #dceedd;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.z-affiliate-id-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    padding: 0.4rem 0.75rem;
+}
+
+.z-affiliate-id-value {
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+}
+
+.z-copy-btn {
+    background: #dceedd;
+    color: #083d31;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.65rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.z-copy-btn:hover {
+    background: #ffffff;
+}
+
+.z-referral-link-section {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.z-referral-link-info {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.z-referral-link-info label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #dceedd;
+}
+
+.z-referral-input-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.z-referral-url-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 8px;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.85rem;
+    color: #0f172a;
+    font-family: monospace;
+    outline: none;
+}
+
+.z-copy-referral-btn {
+    background: #d4f578;
+    color: #083d31;
+    border: none;
+    border-radius: 8px;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.15s ease;
+}
+
+.z-copy-referral-btn:hover {
+    transform: translateY(-1px);
+}
+
+.z-share-actions {
+    display: flex;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+.z-share-btn {
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 0.2s ease;
+}
+
+.z-share-btn.z-whatsapp {
+    background: #25d366;
+    color: #ffffff;
+}
+
+.z-share-btn.z-telegram {
+    background: #229ed9;
+    color: #ffffff;
+}
+
+.z-share-btn:hover {
+    opacity: 0.9;
+}
+
+/* Onboarding alert banner */
+.z-onboarding-alert-card {
+    background: #ffffff;
+    border: 1px solid #fed7aa;
+    border-left: 5px solid #f97316;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.z-onboarding-alert-card.zp-pending-review {
+    border-color: #bbf7d0;
+    border-left-color: #059669;
+}
+
+.z-alert-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+.z-alert-content h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin: 0 0 0.35rem 0;
+    color: #0f172a;
+}
+
+.z-alert-content p {
+    font-size: 0.9rem;
+    color: #475569;
+    margin: 0 0 0.85rem 0;
+    line-height: 1.5;
+}
+
+.z-alert-action-btn {
+    display: inline-block;
+    background: #083d31;
+    color: #ffffff;
+    padding: 0.5rem 1.15rem;
+    border-radius: 7px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+
+.z-alert-action-btn:hover {
+    background: #008f63;
+}
+
+@media (max-width: 640px) {
+    .z-affiliate-hero-card {
+        padding: 1.25rem;
+    }
+    .z-affiliate-hero-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .z-referral-input-row {
+        flex-direction: column;
+    }
+}
+

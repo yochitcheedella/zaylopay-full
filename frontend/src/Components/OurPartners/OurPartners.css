@@ -1,0 +1,150 @@
+
+.partners-section {
+  width: 100%;
+  padding: 48px 20px 15px;
+  background: #fafafa;
+  font-family: Arial, sans-serif;
+}
+
+.partners-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.partners-container h2 {
+  color: #102b29;
+  font-size: 23px;
+  font-weight: 700;
+  margin: 0 0 55px;
+}
+
+.partners-logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  flex-wrap: wrap;
+}
+
+.partner-logo {
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* Myntra */
+.myntra {
+  font-size: 52px;
+  font-weight: 900;
+  font-style: italic;
+  background: linear-gradient(
+    120deg,
+    #ff168d 35%,
+    #ff6b00 50%,
+    #ff168d 70%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* AJIO */
+.ajio {
+  color: #344b5b;
+  font-size: 29px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  background: #fff;
+  padding: 5px 9px;
+}
+
+/* Adidas */
+.adidas {
+  color: #222;
+  font-size: 25px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -1px;
+}
+
+/* Flipkart */
+.flipkart {
+  color: #1685d8;
+  background: #fff;
+  padding: 8px;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.flipkart::after {
+  content: " 🛍️";
+}
+
+/* OnePlus */
+.oneplus {
+  color: #eb0029;
+  background: #fff;
+  padding: 9px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* 500+ more */
+.partners-more {
+  color: #344052;
+  font-size: 25px;
+  font-weight: 400;
+  margin: 30px 0 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .partners-section {
+    padding: 35px 15px 20px;
+  }
+
+  .partners-container h2 {
+    font-size: 22px;
+    margin-bottom: 35px;
+  }
+
+  .partners-logos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 15px;
+    justify-items: center;
+  }
+
+  .partner-logo {
+    min-width: 100px;
+  }
+
+  .myntra {
+    font-size: 45px;
+  }
+
+  .ajio {
+    font-size: 25px;
+  }
+
+  .adidas {
+    font-size: 23px;
+  }
+
+  .flipkart {
+    font-size: 15px;
+  }
+
+  .oneplus {
+    font-size: 12px;
+  }
+
+  .partners-more {
+    font-size: 23px;
+    margin-top: 30px;
+  }
+}

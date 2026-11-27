@@ -1,0 +1,42 @@
+HELP.md
+.env
+.env.*
+target/
+# Preserve Maven Wrapper
+!**/.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+# Environment examples must remain portable source inputs
+!.env.example
+!.env.*.example
+
+# Harness-owned mutable MySQL state (survives Maven clean)
+.local-test-data/

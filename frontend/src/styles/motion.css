@@ -1,0 +1,178 @@
+/* ==========================================================================
+   ZayloPe Unified Motion Design System
+   Shared timing tokens, GPU-composited reveals, viewport stagger helpers,
+   responsive distance scales, background pause mode, and reduced-motion rules.
+   ========================================================================== */
+
+:root {
+  /* Shared Easing Curves */
+  --zp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --zp-ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Standardized Duration Scale */
+  --zp-dur-press: 100ms;
+  --zp-dur-hover: 160ms;
+  --zp-dur-focus: 180ms;
+  --zp-dur-check: 200ms;
+  --zp-dur-error: 200ms;
+  --zp-dur-btn-hover: 150ms;
+  --zp-dur-btn-press: 100ms;
+  --zp-dur-step: 250ms;
+  --zp-dur-card-hover: 250ms;
+  --zp-dur-faq: 280ms;
+  --zp-dur-page: 240ms;
+  --zp-dur-card: 350ms;
+  --zp-dur-card-enter: 420ms;
+  --zp-dur-section-enter: 480ms;
+  --zp-dur-stagger: 70ms;
+  --zp-dur-sweep: 350ms;
+  --zp-dur-success: 350ms;
+  --zp-dur-float: 6.5s;
+  --zp-dur-curve: 11s;
+  --zp-dur-gradient: 20s;
+
+  /* Responsive Motion Distances & Limits */
+  --zp-reveal-distance: 14px;
+  --zp-hover-lift: -4px;
+  --zp-hover-scale: 1.02;
+  --zp-focus-ring: 0 0 0 3px rgba(0, 143, 99, 0.24);
+  --zp-transition-base: var(--zp-dur-hover) var(--zp-ease);
+  --zp-transition-fast: 150ms ease;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --zp-reveal-distance: 10px;
+    --zp-dur-card-enter: 340ms;
+    --zp-dur-section-enter: 380ms;
+    --zp-dur-stagger: 55ms;
+  }
+}
+
+/* Base GPU-composited Keyframes */
+@keyframes zp-motion-reveal {
+  from {
+    opacity: 0.08;
+    transform: translate3d(0, var(--zp-reveal-distance), 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes zp-page-enter {
+  from {
+    opacity: 0.9;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes zp-line-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes zp-svg-draw {
+  from {
+    stroke-dashoffset: var(--zp-stroke-len, 36);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Declarative Page Transition Wrapper */
+.zp-page-stage {
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .zp-page-stage {
+    animation: zp-page-enter var(--zp-dur-page) var(--zp-ease) both;
+  }
+
+  .zp-reveal-group.has-entered .zp-stagger-item {
+    animation: zp-motion-reveal var(--zp-dur-card-enter) var(--zp-ease) both;
+    animation-delay: calc(var(--zp-stagger-index, 0) * var(--zp-dur-stagger));
+  }
+}
+
+/* Shared Accessible Focus Treatment */
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--zp-emerald);
+  outline-offset: 3px;
+}
+
+/* Pause Continuous Ambient Motion when Document is Hidden or User Toggles Pause */
+html[data-zp-page-hidden='true'] .zp-ambient-motion,
+html[data-zp-page-hidden='true'] .zp-auth-bg-glow,
+html[data-zp-page-hidden='true'] .zp-curve-group,
+html[data-zp-page-hidden='true'] .final-cta-visual img,
+html[data-zp-motion='paused'] .zp-ambient-motion,
+html[data-zp-motion='paused'] .zp-auth-bg-glow,
+html[data-zp-motion='paused'] .zp-curve-group,
+html[data-zp-motion='paused'] .final-cta-visual img,
+html[data-zp-motion='paused'] .zp-calc-coin,
+html[data-zp-motion='paused'] .zp-final-float {
+  animation-play-state: paused !important;
+}
+
+/* Motion Toggle Pill (WCAG 2.2.2 Pause / Resume Continuous Decorative Motion) */
+.zp-motion-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 6px 12px;
+  border: 1px solid rgba(8, 61, 49, 0.22);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--zp-forest, #083d31);
+  font: 600 12px/1.2 var(--zp-font-body, Inter, Arial, sans-serif);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background-color var(--zp-dur-hover) var(--zp-ease),
+    border-color var(--zp-dur-hover) var(--zp-ease),
+    transform var(--zp-dur-press) var(--zp-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .zp-motion-toggle:hover {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(8, 61, 49, 0.42);
+  }
+}
+
+.zp-motion-toggle:active {
+  transform: scale(0.97);
+}
+
+/* Strict Global Prefers-Reduced-Motion Safety Net */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .zp-page-stage,
+  .zp-reveal-group.has-entered .zp-stagger-item {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

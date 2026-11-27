@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="zp-brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#083d31"/>
+      <stop offset="100%" stop-color="#008f63"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="url(#zp-brand-grad)"/>
+  <path fill="#ffffff" d="M8 5h16v3.3L13.7 20.6H24V24H7.7v-3.3L18 8.5H8z"/>
+</svg>

@@ -1,0 +1,215 @@
+/* ==========================================================================
+   Application Review Step Styling — Expanded 760px Two-Card Layout
+   ========================================================================== */
+
+.zp-review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  text-align: left;
+}
+
+.zp-review-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.zp-review-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid var(--zp-border);
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-surface-subtle);
+  min-width: 0;
+}
+
+.zp-review-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--zp-border);
+  min-height: 44px;
+}
+
+.zp-review-card-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.zp-review-card-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--zp-radius-full);
+  background: var(--zp-mint);
+  color: var(--zp-forest);
+  font-size: 12.5px;
+  font-weight: 700;
+  font-family: var(--zp-font-heading);
+  flex-shrink: 0;
+}
+
+.zp-review-card-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--zp-forest);
+  font-family: var(--zp-font-heading);
+}
+
+.zp-review-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--zp-accent-text);
+  font-size: 13.5px;
+  font-weight: 700;
+  font-family: var(--zp-font-body);
+  cursor: pointer;
+  border-radius: var(--zp-radius-sm);
+  white-space: nowrap;
+  transition: background-color var(--zp-dur-btn-hover, 150ms) ease,
+    border-color var(--zp-dur-btn-hover, 150ms) ease;
+}
+
+.zp-review-edit-btn:hover:not(:disabled) {
+  background: var(--zp-valid-bg);
+  border-color: var(--zp-valid-border);
+  text-decoration: underline;
+}
+
+.zp-review-edit-btn:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+}
+
+.zp-review-edit-btn:disabled {
+  color: var(--zp-btn-disabled-text);
+  cursor: not-allowed;
+}
+
+.zp-review-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.zp-review-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.zp-review-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--zp-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--zp-font-body);
+}
+
+.zp-review-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--zp-ink);
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.zp-review-val-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.zp-badge-unverified {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--zp-radius-full);
+  background: #edf2ee;
+  border: 1px solid var(--zp-border);
+  color: var(--zp-text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Declaration & Aligned Checkbox */
+.zp-declaration-box {
+  padding: 16px 18px;
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-surface-subtle);
+  border: 1.5px solid var(--zp-border);
+  transition: border-color var(--zp-dur-error, 200ms) ease,
+    background-color var(--zp-dur-error, 200ms) ease;
+}
+
+.zp-declaration-box.has-error {
+  border-color: var(--zp-error-border);
+  background: var(--zp-error-bg);
+}
+
+.zp-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--zp-ink);
+}
+
+.zp-checkbox-input {
+  width: 22px;
+  height: 22px;
+  margin: 2px 0 0;
+  flex-shrink: 0;
+  accent-color: var(--zp-forest);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.zp-checkbox-input:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 3px;
+}
+
+.zp-consent-link {
+  color: var(--zp-accent-text);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.zp-consent-link:hover {
+  color: var(--zp-forest);
+}
+
+@media (max-width: 720px) {
+  .zp-review-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .zp-review-card {
+    padding: 16px;
+  }
+}

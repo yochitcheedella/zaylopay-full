@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+
+:root {
+  /* Brand Core Colors */
+  --zp-forest: #083d31;
+  --zp-emerald: #008f63;
+  --zp-lime: #d4f578;
+  --zp-warm: #f5f8f2;
+  --zp-ink: #142820;
+  --zp-border: #dce7df;
+  --zp-surface: #ffffff;
+  --zp-mint: #dceedd;
+
+  /* WCAG AA Accessible Text Contrast Tokens (>= 4.5:1 ratio) */
+  --zp-accent-text: #006644;        /* Contrast >= 4.7:1 on white/warm */
+  --zp-text-primary: #142820;       /* High-contrast ink for headings (> 13:1) */
+  --zp-text-secondary: #273e33;     /* Dark readable forest for body copy (> 8:1) */
+  --zp-muted: #385346;              /* Accessible supporting/caption text (> 6:1) */
+  --zp-on-dark-primary: #ffffff;    /* High-contrast white on dark backgrounds */
+  --zp-on-dark-muted: #dbeef0;      /* Contrast >= 9:1 on dark forest */
+  --zp-on-dark-accent: #d4f578;     /* Contrast >= 11:1 lime on dark forest */
+
+  /* Layout and Geometry */
+  --zp-control-border: #8aa99a;
+  --zp-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --zp-font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --zp-container: 1240px;
+  --zp-control-radius: 9px;
+  --zp-ease: cubic-bezier(.2, .8, .2, 1);
+
+  /* Central Typography Tokens */
+  /* Section labels: 22px desktop, 20px tablet, 18px mobile */
+  --zp-section-label-size: 22px;
+  --zp-section-label-weight: 700;
+  --zp-section-label-spacing: 0.5px;
+  --zp-section-label-line-height: 1.35;
+
+  /* Step numbers: 24px desktop, 20px mobile */
+  --zp-step-num-size: 24px;
+  --zp-step-num-weight: 700;
+  --zp-step-num-size-sm: 20px;
+
+  /* Card Headings & Descriptions */
+  --zp-card-title-size: 20px;
+  --zp-card-title-weight: 700;
+  --zp-card-title-line-height: 1.35;
+  --zp-body-size: 16px;
+  --zp-body-line-height: 1.65;
+  --zp-supporting-size: 15px;
+  --zp-supporting-line-height: 1.6;
+
+  /* Standardized Section Spacing (eliminated empty gaps) */
+  --zp-section-padding-block: clamp(44px, 4.2vw, 64px);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --zp-section-label-size: 20px;
+    --zp-step-num-size: 22px;
+    --zp-section-padding-block: clamp(38px, 4vw, 52px);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --zp-section-label-size: 18px;
+    --zp-step-num-size: 20px;
+    --zp-section-padding-block: clamp(32px, 3.8vw, 42px);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--zp-font-body);
+  color: var(--zp-text-primary);
+  background-color: #ffffff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Shared Typography Utility Classes
+   ========================================================================== */
+
+/* Universal Section Labels / Eyebrows */
+.zp-section-label,
+.zp-eyebrow,
+.about-eyebrow,
+.how-kicker,
+.member-eyebrow,
+.public-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--zp-font-heading);
+  font-size: var(--zp-section-label-size) !important;
+  font-weight: var(--zp-section-label-weight) !important;
+  line-height: var(--zp-section-label-line-height) !important;
+  letter-spacing: var(--zp-section-label-spacing) !important;
+  color: var(--zp-accent-text) !important;
+  text-transform: none !important; /* Title Case preferred over spaced uppercase */
+  margin-bottom: 12px;
+}
+
+/* On-Dark Section Labels */
+.zp-section-label-on-dark,
+.zp-final .zp-eyebrow,
+.about-purpose-dark .about-eyebrow,
+.final-cta-copy .about-eyebrow,
+.how-next .how-kicker {
+  color: var(--zp-on-dark-accent) !important;
+}
+
+/* Universal Step Numbers */
+.zp-step-number,
+.how-number,
+.eco-step-number,
+.zp-journey-marker b,
+.zp-referral-number b,
+.member-stage,
+.zp-badge-num {
+  font-family: var(--zp-font-heading);
+  font-size: var(--zp-step-num-size) !important;
+  font-weight: var(--zp-step-num-weight) !important;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 768px) {
+  .zp-step-number,
+  .how-number,
+  .eco-step-number,
+  .zp-journey-marker b,
+  .zp-referral-number b,
+  .member-stage,
+  .zp-badge-num {
+    font-size: var(--zp-step-num-size-sm) !important;
+  }
+}
+
+/* High-contrast supporting text */
+.zp-supporting-text {
+  font-size: var(--zp-supporting-size);
+  line-height: var(--zp-supporting-line-height);
+  color: var(--zp-text-secondary);
+}
+
+
+/* Shared customer validation feedback. */
+:root .zp-field-error, :root .registration-field-error, :root .zp-login-request-error,
+:root .zp-google-btn-error-text {
+  color: #b42318;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  animation: zp-validation-appear 160ms ease-out;
+}
+.registration-field-error::before { content: 'ⓘ '; }
+@keyframes zp-validation-appear {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root .zp-field-error, :root .registration-field-error, :root .zp-login-request-error,
+  :root .zp-google-btn-error-text { animation: none; }
+}
+

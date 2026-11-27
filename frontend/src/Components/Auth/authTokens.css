@@ -1,0 +1,53 @@
+/* Authentication dimensions and finite interaction timings. Brand colour/font tokens
+   are inherited from registrationTokens.css to keep the four-step flow consistent. */
+.zp-auth-login {
+  --zp-card-max-compact: 520px;
+  --zp-auth-inner: 440px;
+  --zp-auth-padding: 40px;
+  --zp-input-height: 50px;
+  --zp-button-height: 50px;
+  --zp-dur-card: 300ms;
+  --zp-dur-focus: 150ms;
+  --zp-auth-error-time: 200ms;
+  --zp-auth-screen-time: 250ms;
+  --zp-auth-success-time: 450ms;
+}
+.zp-auth-login .zp-auth-card { max-width:520px; padding:32px var(--zp-auth-padding); border-radius:24px; }
+.zp-auth-login .zp-auth-card-body { max-width:var(--zp-auth-inner); margin-inline:auto; }
+.zp-auth-login .zp-auth-card-heading { margin-bottom:24px; }
+.zp-auth-login .zp-auth-card-title { font-size:30px; }
+.zp-auth-login .zp-auth-card-subtitle { font-size:15px; margin-top:8px; }
+.zp-auth-login .zp-back-home { padding:0; border:0; background:none; backdrop-filter:none; border-radius:6px; }
+.zp-auth-login .zp-auth-main { padding:16px 24px 20px; }
+.zp-auth-login .zp-auth-topbar { padding-top:12px; }
+.zp-auth-login .zp-auth-divider { margin:20px 0; }
+.zp-auth-login .zp-login-actions { margin-top:20px; }
+.zp-auth-login .zp-primary-button { min-height:50px; height:50px; }
+.zp-auth-login .zp-login-switch-prompt { margin:16px 0 0; }
+.zp-auth-login .zp-login-text-btn { display:block; margin:0 auto; min-height:44px; font-size:14px; }
+.zp-auth-login .zp-auth-footer { margin-top:16px; gap:0; }
+.zp-auth-login .zp-auth-support-links { gap:4px; }
+.zp-auth-login .zp-auth-bg-glow, .zp-auth-login .zp-curve-group { animation-duration:2500ms; }
+.zp-auth-login .zp-form-field.has-error .zp-input-wrapper { background:var(--zp-error-bg); border-color:var(--zp-error); }
+.zp-auth-login .zp-field-error { margin-top:2px; animation-duration:var(--zp-auth-error-time); }
+.zp-auth-login .zp-auth-card-body > div { animation:zp-auth-screen 250ms ease-out both; }
+@keyframes zp-auth-screen { from {opacity:0;transform:translateY(4px)} to {opacity:1;transform:none} }
+@media(max-width:540px) {
+ .zp-auth-login { --zp-auth-padding:24px; }
+ .zp-auth-login .zp-auth-main { padding:12px 16px 16px; }
+ .zp-auth-login .zp-auth-card { padding:24px var(--zp-auth-padding); }
+}
+@media(prefers-reduced-motion:reduce) {
+ .zp-auth-login *, .zp-auth-login *::before, .zp-auth-login *::after { animation:none !important; transition:none !important; }
+}
+.zp-auth-login { --zp-form-google-max:440px; }
+.zp-auth-login .zp-form-column { gap:0; }
+.zp-auth-login .zp-google-btn-wrapper { min-height:48px; display:flex; align-items:center; justify-content:center; }
+.zp-auth-login .zp-google-btn-container { width:100%; }
+@media (min-width:541px) and (max-height:760px) {
+ .zp-auth-login .zp-auth-main { padding-block:8px; }
+ .zp-auth-login .zp-auth-topbar { padding-top:4px; }
+ .zp-auth-login .zp-auth-card-heading { margin-bottom:20px; }
+ .zp-auth-login .zp-auth-card-logo { margin-bottom:12px; }
+ .zp-auth-login .zp-auth-footer { margin-top:8px; }
+}

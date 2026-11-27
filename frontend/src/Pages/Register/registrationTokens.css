@@ -1,0 +1,130 @@
+/* ==========================================================================
+   ZayloPe Unified Authentication & Registration Design Tokens
+   Single source of truth aligned with site identity, pastel Dribbble backdrop,
+   exact reference motion timings, and WCAG 2.2 AA contrast standards.
+   ========================================================================== */
+
+:root {
+  /* Core Brand Palette */
+  --zp-forest: #083d31;
+  --zp-forest-hover: #062e25;
+  --zp-forest-active: #05241d;
+  --zp-emerald: #008f63;
+  --zp-accent-text: #006644;       /* >= 6.7:1 on #FFFFFF */
+  --zp-lime: #d4f578;
+  --zp-mint: #dceedd;
+  --zp-warm: #f5f8f2;
+
+  /* Pastel Animated Backdrop Palette */
+  --zp-bg-lime: #e9fbcb;           /* Top-center soft lime glow */
+  --zp-bg-sage: #d1e2c9;           /* Right muted sage green */
+  --zp-bg-mint: #bfd5c4;           /* Bottom-left soft mint green */
+  --zp-bg-curve: #a5ce76;          /* Decorative looping SVG lines */
+
+  /* Surface & Accessible Text Tokens (WCAG 2.2 AA) */
+  --zp-surface: #ffffff;
+  --zp-surface-subtle: #f9fbf9;
+  --zp-ink: #142820;               /* > 14:1 on #FFFFFF, > 9.5:1 on pastel ground */
+  --zp-text-secondary: #273e33;    /* > 6.8:1 on #BFD5C4 / #FFFFFF */
+  --zp-muted: #52665c;             /* 6.06:1 on #FFFFFF */
+  --zp-muted-placeholder: #52665c; /* 6.06:1 on #FFFFFF */
+  --zp-muted-light: #52665c;
+  --zp-border: #dce7de;
+  --zp-control-border: #7c9789;    /* >= 3.0:1 non-text contrast against #FFFFFF */
+  --zp-on-dark-muted: #dbeef0;
+
+  /* Validation & Feedback Semantics */
+  --zp-valid-bg: #e6fbe0;
+  --zp-valid-border: #79b96c;
+  --zp-valid-badge: #08794f;       /* 5.44:1 white checkmark contrast */
+  --zp-success: #08794f;
+  --zp-success-dark: #083d31;
+  --zp-success-bg: #e6fbe0;
+  --zp-success-border: #79b96c;
+  --zp-error: #b42318;             /* 6.07:1 on #FFF0F1 */
+  --zp-error-bg: #fff0f1;
+  --zp-error-border: #dc3545;
+  --zp-warning: #7c4400;
+  --zp-warning-bg: #fffbe6;
+  --zp-warning-border: #e8c768;
+  --zp-info: #083d31;
+  --zp-info-bg: #eef6f0;
+  --zp-info-border: #9ec4ac;
+
+  /* Button Tokens (High contrast — never opacity-only disabled) */
+  --zp-btn-primary-bg: #083d31;
+  --zp-btn-primary-bg-solid: #083d31;
+  --zp-btn-primary-hover: #062e25;
+  --zp-btn-primary-active: #05241d;
+  --zp-btn-primary-text: #ffffff;
+  --zp-btn-disabled-bg: #dce6e0;
+  --zp-btn-disabled-border: #bfd0c6;
+  --zp-btn-disabled-text: #385346;
+  --zp-btn-secondary-border: #7c9789;
+  --zp-btn-secondary-text: #083d31;
+  --zp-btn-secondary-hover-bg: #eef6f0;
+
+  /* Typography */
+  --zp-font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --zp-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* 4px / 8px Spacing System */
+  --zp-space-1: 8px;
+  --zp-space-2: 16px;
+  --zp-space-3: 24px;
+  --zp-space-4: 32px;
+  --zp-space-5: 40px;
+
+  /* Expanded Card & Control Dimensions */
+  --zp-card-max-register: 640px;
+  --zp-card-max-compact: 560px;
+  --zp-card-max-payment: 680px;
+  --zp-card-max-review: 760px;
+  --zp-form-inner-max: 520px;
+  --zp-form-google-max: 400px;
+
+  --zp-input-height: 52px;
+  --zp-btn-height: 52px;
+  --zp-touch-min: 44px;
+  --zp-control-radius: 12px;
+  --zp-radius-control: 12px;
+  --zp-radius-card: 24px;
+  --zp-radius-sm: 8px;
+  --zp-radius-full: 9999px;
+
+  /* Focus & Shadows */
+  --zp-focus-ring: 0 0 0 3px rgba(0, 143, 99, 0.22);
+  --zp-focus-ring-error: 0 0 0 3px rgba(220, 53, 69, 0.18);
+  --zp-focus-outline: 3px solid var(--zp-emerald);
+  --zp-shadow-card: 0 18px 50px -22px rgba(8, 61, 49, 0.16), 0 4px 16px rgba(8, 61, 49, 0.05);
+  --zp-shadow-btn: 0 2px 6px rgba(8, 61, 49, 0.12);
+  --zp-shadow-btn-hover: 0 6px 14px rgba(8, 61, 49, 0.18);
+  --zp-shadow-sm: 0 1px 2px rgba(8, 61, 49, 0.04);
+
+  /* Standardized Motion Timings */
+  --zp-dur-card: 350ms;
+  --zp-dur-focus: 180ms;
+  --zp-dur-sweep: 350ms;
+  --zp-dur-check: 200ms;
+  --zp-dur-error: 200ms;
+  --zp-dur-btn-hover: 150ms;
+  --zp-dur-btn-press: 100ms;
+  --zp-dur-step: 250ms;
+  --zp-dur-success: 350ms;
+  --zp-dur-curve: 10s;
+  --zp-dur-gradient: 20s;
+  --zp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --zp-transition-base: 200ms var(--zp-ease);
+  --zp-transition-fast: 150ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,652 @@
+/* ==========================================================================
+   ZayloPe Reusable Animated Form Controls
+   52px inputs & primary CTAs, 12px radius, fixed status slot (0px CLS),
+   180ms focus, 350ms left-to-right green validation sweep, 200ms badge reveals.
+   ========================================================================== */
+
+.zp-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--zp-space-2, 16px);
+  text-align: left;
+  min-width: 0;
+}
+
+.zp-field-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--zp-font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--zp-ink);
+  letter-spacing: -0.01em;
+}
+
+.zp-required-star {
+  color: var(--zp-error);
+  font-weight: 700;
+}
+
+/* Wrapper */
+.zp-input-wrapper,
+.zp-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--zp-input-height, 52px);
+  height: var(--zp-input-height, 52px);
+  border: 1.5px solid var(--zp-control-border);
+  border-radius: var(--zp-control-radius, 12px);
+  background: var(--zp-surface);
+  overflow: hidden;
+  transition: border-color var(--zp-dur-focus, 180ms) ease,
+    box-shadow var(--zp-dur-focus, 180ms) ease,
+    background-color var(--zp-dur-error, 200ms) ease;
+  box-shadow: var(--zp-shadow-sm);
+}
+
+.zp-input-wrapper:hover:not(.is-disabled *),
+.zp-select-wrapper:hover {
+  border-color: var(--zp-forest);
+}
+
+.zp-form-field.is-focused .zp-input-wrapper,
+.zp-select-wrapper:focus-within {
+  border-color: var(--zp-emerald);
+  box-shadow: var(--zp-focus-ring);
+}
+
+.zp-form-field.is-valid .zp-input-wrapper {
+  border-color: var(--zp-valid-border);
+}
+
+.zp-form-field.is-valid.is-focused .zp-input-wrapper {
+  border-color: var(--zp-valid-badge);
+  box-shadow: var(--zp-focus-ring);
+}
+
+.zp-form-field.has-error .zp-input-wrapper,
+.zp-form-field.has-error .zp-select-wrapper {
+  border-color: var(--zp-error-border);
+  background-color: var(--zp-error-bg);
+}
+
+.zp-form-field.has-error.is-focused .zp-input-wrapper {
+  border-color: var(--zp-error);
+  box-shadow: var(--zp-focus-ring-error);
+}
+
+.zp-form-field.is-disabled .zp-input-wrapper,
+.zp-form-field.is-disabled .zp-select-wrapper {
+  background: #edf2ee;
+  border-color: var(--zp-btn-disabled-border);
+}
+
+/* Soft green validated background (#E6FBE0) + 350ms L->R->R sweep (behind text) */
+.zp-input-valid-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--zp-valid-bg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms var(--zp-ease);
+}
+
+.zp-form-field.is-valid .zp-input-valid-fill {
+  opacity: 1;
+}
+
+.zp-input-sweep {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(90deg,
+      rgba(165, 206, 118, 0.24) 0%,
+      rgba(121, 185, 108, 0.42) 60%,
+      rgba(8, 121, 79, 0.16) 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.zp-form-field.is-valid .zp-input-sweep {
+  animation: zp-valid-sweep var(--zp-dur-sweep, 350ms) var(--zp-ease) forwards;
+}
+
+@keyframes zp-valid-sweep {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left center;
+    opacity: 0.95;
+  }
+
+  58% {
+    transform: scaleX(1);
+    transform-origin: left center;
+    opacity: 0.9;
+  }
+
+  59% {
+    transform: scaleX(1);
+    transform-origin: right center;
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scaleX(0);
+    transform-origin: right center;
+    opacity: 0;
+  }
+}
+
+/* Foreground elements stay crisply above background sweep layers */
+.zp-input-leading-icon {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 14px;
+  color: var(--zp-muted);
+  flex-shrink: 0;
+  transition: color var(--zp-dur-focus, 180ms) ease;
+}
+
+.zp-form-field.is-focused .zp-input-leading-icon {
+  color: var(--zp-forest);
+}
+
+.zp-form-field.is-valid .zp-input-leading-icon {
+  color: var(--zp-valid-badge);
+}
+
+.zp-form-field.has-error .zp-input-leading-icon {
+  color: var(--zp-error);
+}
+
+.zp-input-prefix {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px 0 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--zp-ink);
+  border-right: 1px solid var(--zp-border);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.zp-input-wrapper:not(.has-leading-icon) .zp-input-prefix {
+  padding-left: 14px;
+}
+
+.zp-field-input {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 10px 4px 10px 14px;
+  border: none;
+  background: transparent;
+  color: var(--zp-ink);
+  font-family: var(--zp-font-body);
+  font-size: 16px;
+  line-height: 1.4;
+  outline: none;
+}
+
+.zp-input-wrapper.has-leading-icon:not(.has-prefix) .zp-field-input {
+  padding-left: 10px;
+}
+
+.zp-input-wrapper.has-prefix .zp-field-input {
+  padding-left: 12px;
+}
+
+.zp-field-input::placeholder {
+  color: var(--zp-muted-placeholder);
+  opacity: 0.92;
+}
+
+.zp-field-input:disabled {
+  background-color: transparent;
+  color: var(--zp-btn-disabled-text);
+  cursor: not-allowed;
+}
+
+/* Override Chrome yellow/blue autofill background cleanly */
+.zp-field-input:-webkit-autofill {
+  -webkit-text-fill-color: var(--zp-ink);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.zp-input-suffix {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  color: var(--zp-muted);
+}
+
+/* Fixed width status indicator slot (prevents layout shifts) */
+.zp-input-status-slot {
+  position: relative;
+  z-index: 2;
+  width: 40px;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.zp-status-dot {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.65);
+  transition: opacity var(--zp-dur-check, 200ms) var(--zp-ease),
+    transform var(--zp-dur-check, 200ms) var(--zp-ease);
+}
+
+.zp-status-dot.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.zp-dot-pencil {
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  color: var(--zp-emerald);
+}
+
+.zp-dot-valid {
+  background: var(--zp-valid-badge);
+  color: #ffffff;
+  transition-delay: 90ms;
+}
+
+.zp-dot-error {
+  background: var(--zp-error-border);
+  color: #ffffff;
+}
+
+/* Select */
+.zp-field-select {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 10px 38px 10px 14px;
+  border: none;
+  background: transparent;
+  color: var(--zp-ink);
+  font-family: var(--zp-font-body);
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+.zp-select-arrow {
+  position: absolute;
+  right: 14px;
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  color: var(--zp-muted);
+  display: flex;
+  align-items: center;
+}
+
+.zp-select-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Helper & Error messages */
+.zp-field-error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--zp-error);
+  line-height: 1.4;
+}
+
+.zp-error-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.zp-field-helper {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--zp-muted);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   Membership Summary Strip (Inside Step 1 / Profile Completion)
+   ========================================================================== */
+.zp-membership-summary {
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-surface-subtle);
+  border: 1px solid var(--zp-border);
+  text-align: left;
+}
+
+.zp-membership-summary-head {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.zp-membership-fee-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--zp-radius-full);
+  background: var(--zp-valid-bg);
+  border: 1px solid var(--zp-valid-border);
+  color: var(--zp-forest);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.zp-membership-summary-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--zp-muted);
+}
+
+/* ==========================================================================
+   Error & Status Banners
+   ========================================================================== */
+.zp-banner-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-error-bg);
+  border: 1px solid var(--zp-error-border);
+  color: var(--zp-error);
+  text-align: left;
+}
+
+.zp-banner-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.zp-banner-content {
+  flex: 1;
+  font-size: 13.5px;
+  line-height: 1.45;
+  min-width: 0;
+}
+
+.zp-banner-title {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.zp-banner-text {
+  margin: 0;
+}
+
+.zp-banner-dismiss {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  min-width: 28px;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.zp-banner-dismiss:hover {
+  background: rgba(180, 35, 24, 0.08);
+}
+
+.zp-status-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border-radius: var(--zp-control-radius);
+  font-size: 13.5px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.zp-status-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.zp-status-success {
+  background: var(--zp-valid-bg);
+  border: 1px solid var(--zp-valid-border);
+  color: var(--zp-forest);
+}
+
+.zp-status-info {
+  background: var(--zp-info-bg);
+  border: 1px solid var(--zp-info-border);
+  color: var(--zp-forest);
+}
+
+.zp-status-warning {
+  background: var(--zp-warning-bg);
+  border: 1px solid var(--zp-warning-border);
+  color: var(--zp-warning);
+}
+
+/* ==========================================================================
+   Buttons (52px height, 12px radius, 150ms hover, 100ms active press)
+   ========================================================================== */
+.zp-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: var(--zp-btn-height, 52px);
+  padding: 12px 24px;
+  border-radius: var(--zp-control-radius, 12px);
+  border: 1.5px solid var(--zp-forest);
+  background: var(--zp-btn-primary-bg);
+  color: var(--zp-btn-primary-text);
+  font-family: var(--zp-font-body);
+  font-size: 15.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--zp-dur-btn-hover, 150ms) ease,
+    border-color var(--zp-dur-btn-hover, 150ms) ease,
+    box-shadow var(--zp-dur-btn-hover, 150ms) ease,
+    transform var(--zp-dur-btn-press, 100ms) ease;
+  box-shadow: var(--zp-shadow-btn);
+}
+
+.zp-primary-button:hover:not(:disabled) {
+  background: var(--zp-btn-primary-hover);
+  border-color: var(--zp-btn-primary-hover);
+  box-shadow: var(--zp-shadow-btn-hover);
+}
+
+.zp-primary-button:active:not(:disabled) {
+  background: var(--zp-btn-primary-active);
+  transform: scale(0.99);
+}
+
+.zp-primary-button:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 3px;
+}
+
+.zp-primary-button:disabled {
+  background: var(--zp-btn-disabled-bg);
+  border-color: var(--zp-btn-disabled-border);
+  color: var(--zp-btn-disabled-text);
+  opacity: 1;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.zp-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--zp-btn-height, 52px);
+  padding: 12px 20px;
+  border-radius: var(--zp-control-radius, 12px);
+  border: 1.5px solid var(--zp-btn-secondary-border);
+  background: var(--zp-surface);
+  color: var(--zp-btn-secondary-text);
+  font-family: var(--zp-font-body);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--zp-dur-btn-hover, 150ms) ease,
+    border-color var(--zp-dur-btn-hover, 150ms) ease,
+    transform var(--zp-dur-btn-press, 100ms) ease;
+}
+
+.zp-secondary-button:hover:not(:disabled) {
+  border-color: var(--zp-emerald);
+  background: var(--zp-btn-secondary-hover-bg);
+  color: var(--zp-forest);
+}
+
+.zp-secondary-button:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.zp-secondary-button:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 3px;
+}
+
+.zp-secondary-button:disabled {
+  background: #eff4f1;
+  border-color: var(--zp-btn-disabled-border);
+  color: var(--zp-btn-disabled-text);
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.zp-btn-spinner {
+  width: 17px;
+  height: 17px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: zp-spin 0.65s linear infinite;
+}
+
+.zp-btn-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.zp-btn-icon svg {
+  width: 17px;
+  height: 17px;
+  transition: transform var(--zp-dur-btn-hover, 150ms) ease;
+}
+
+.zp-primary-button:hover:not(:disabled) .zp-btn-icon svg {
+  transform: translateX(2px);
+}
+
+@keyframes zp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   Declaration & Legal Consent Checkbox
+   ========================================================================== */
+.zp-declaration-box {
+  padding: 16px 18px;
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-surface-subtle);
+  border: 1.5px solid var(--zp-border);
+  transition: border-color var(--zp-dur-error, 200ms) ease,
+    background-color var(--zp-dur-error, 200ms) ease;
+}
+
+.zp-declaration-box.has-error {
+  border-color: var(--zp-error-border);
+  background: var(--zp-error-bg);
+}
+
+.zp-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--zp-ink);
+}
+
+.zp-checkbox-input {
+  width: 22px;
+  height: 22px;
+  margin: 2px 0 0;
+  flex-shrink: 0;
+  accent-color: var(--zp-forest);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.zp-checkbox-input:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 3px;
+}
+
+.zp-consent-link {
+  color: var(--zp-accent-text);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.zp-consent-link:hover {
+  color: var(--zp-forest);
+}

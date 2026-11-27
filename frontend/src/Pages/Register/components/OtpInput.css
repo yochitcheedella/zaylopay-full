@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Accessible Single-Input OTP Digit Box Styling (52px, 12px radius)
+   ========================================================================== */
+
+.zp-otp-group {
+  position: relative;
+  width: 100%;
+  margin: 12px 0 14px;
+  cursor: text;
+}
+
+.zp-otp-logical-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 3;
+  cursor: text;
+  font-size: 20px;
+}
+
+.zp-otp-logical-input:disabled {
+  cursor: not-allowed;
+}
+
+.zp-otp-cells {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.zp-otp-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  border: 1.5px solid var(--zp-control-border);
+  border-radius: var(--zp-control-radius, 12px);
+  background: var(--zp-surface);
+  color: var(--zp-ink);
+  font-family: var(--zp-font-body);
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  box-shadow: var(--zp-shadow-sm);
+  transition: border-color var(--zp-dur-focus, 180ms) ease,
+              background-color var(--zp-dur-error, 200ms) ease,
+              box-shadow var(--zp-dur-focus, 180ms) ease;
+}
+
+.zp-otp-cell.is-filled {
+  border-color: var(--zp-forest);
+  background: var(--zp-surface-subtle);
+}
+
+.zp-otp-group.is-focused .zp-otp-cell.is-active {
+  border-color: var(--zp-emerald);
+  box-shadow: var(--zp-focus-ring);
+}
+
+.zp-otp-group.is-success .zp-otp-cell {
+  border-color: var(--zp-valid-border);
+  background: var(--zp-valid-bg);
+  color: var(--zp-forest);
+}
+
+.zp-otp-group.has-error .zp-otp-cell {
+  border-color: var(--zp-error-border);
+  background: var(--zp-error-bg);
+}
+
+.zp-otp-group.has-error.is-focused .zp-otp-cell.is-active {
+  border-color: var(--zp-error);
+  box-shadow: var(--zp-focus-ring-error);
+}
+
+@media (max-width: 400px) {
+  .zp-otp-cells {
+    gap: 6px;
+  }
+
+  .zp-otp-cell {
+    height: 48px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 340px) {
+  .zp-otp-cells {
+    gap: 4px;
+  }
+
+  .zp-otp-cell {
+    height: 44px;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,90 @@
+/* ==========================================================================
+   Registration Notice & Restoration Status Styling
+   (Header, footer, split grid, and card geometry are consolidated in
+   Components/Auth/AuthLayout.css)
+   ========================================================================== */
+
+.zp-card-notice {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: var(--zp-control-radius);
+  font-size: 13.5px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.zp-card-notice-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.zp-card-notice-body p {
+  margin: 0;
+  flex: 1;
+}
+
+.zp-notice-retry-btn,
+.zp-notice-login-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--zp-radius-sm);
+  background: #ffffff;
+  color: inherit;
+  border: 1.5px solid currentColor;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.zp-notice-retry-btn:focus-visible,
+.zp-notice-login-link:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+}
+
+.zp-card-notice-session {
+  background: var(--zp-error-bg);
+  border: 1px solid var(--zp-error-border);
+  color: var(--zp-error);
+}
+
+.zp-card-notice-database,
+.zp-card-notice-service,
+.zp-card-notice-error {
+  background: var(--zp-warning-bg);
+  border: 1px solid var(--zp-warning-border);
+  color: var(--zp-warning);
+}
+
+.zp-card-notice-offline {
+  background: #eff4f1;
+  border: 1px solid var(--zp-control-border);
+  color: var(--zp-ink);
+}
+
+.zp-restoring-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 8px;
+  font-size: 13.5px;
+  color: var(--zp-muted);
+}
+
+.zp-restoring-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--zp-border);
+  border-top-color: var(--zp-emerald);
+  border-radius: 50%;
+  animation: zp-spin 0.65s linear infinite;
+}

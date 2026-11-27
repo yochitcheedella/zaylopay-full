@@ -1,0 +1,160 @@
+@import '../../Components/Auth/authTokens.css';
+/* ==========================================================================
+   ZayloPe Login Page Specific Styling
+   Harmonized with single-column expanded AuthLayout components
+   ========================================================================== */
+
+@import '../../Components/Auth/AuthLayout.css';
+
+.zp-login-actions {
+  margin-top: 20px;
+}
+
+.zp-login-actions .zp-primary-button {
+  width: 100%;
+}
+
+.zp-login-switch-prompt {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--zp-muted);
+}
+
+.zp-login-switch-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 4px;
+  color: var(--zp-accent-text);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.zp-login-switch-link:hover {
+  color: var(--zp-forest);
+  text-decoration: underline;
+}
+
+.zp-login-switch-link:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+}
+
+.zp-linking-confirm-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zp-linking-info {
+  background: var(--zp-surface-subtle);
+  border: 1px solid var(--zp-border);
+  border-radius: var(--zp-control-radius);
+  padding: 14px 16px;
+}
+
+.zp-linking-desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--zp-ink);
+  text-align: left;
+}
+
+.zp-linking-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.zp-linking-actions .zp-primary-button,
+.zp-linking-actions .zp-secondary-button {
+  width: 100%;
+}
+
+.zp-login-otp-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.zp-login-otp-destination {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  margin: 2px 0;
+  color: var(--zp-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.zp-login-otp-destination strong {
+  color: var(--zp-ink);
+  font-size: 16px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.zp-otp-timer-note {
+  margin: 0;
+  font-size: 13px;
+  color: var(--zp-muted);
+}
+
+.zp-otp-expired-note {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--zp-error);
+}
+
+.zp-login-text-btn {
+  margin-top: 4px;
+  min-height: 44px;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  color: var(--zp-accent-text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--zp-radius-sm);
+}
+
+.zp-login-text-btn:hover:not(:disabled) {
+  color: var(--zp-forest);
+  text-decoration: underline;
+}
+
+.zp-login-text-btn:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+}
+
+.zp-login-create-account {
+  margin: 2px 0 0;
+  color: var(--zp-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.zp-login-request-error,
+.zp-login-request-note {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.zp-login-request-error { color: var(--zp-error); }
+.zp-login-request-note { color: var(--zp-muted); }
+
+
+
+.zp-auth-login .zp-login-otp-notice { margin:0; color:var(--zp-muted); font-size:14px; line-height:1.5; }
+.zp-welcome-check-ring.is-animated { animation-duration:450ms; }

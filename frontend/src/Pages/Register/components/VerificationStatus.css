@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Verification Status Cards & Badges (Harmonized with ZayloPe Site Theme)
+   ========================================================================== */
+
+.zp-channel-card {
+  padding: 16px 18px;
+  border: 1px solid var(--zp-border);
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-surface);
+  margin-bottom: 14px;
+  box-shadow: var(--zp-shadow-sm);
+  transition: border-color var(--zp-transition-fast), background-color var(--zp-transition-fast);
+}
+
+.zp-channel-card.is-verified {
+  border-color: var(--zp-success-border);
+  background: var(--zp-success-bg);
+}
+
+.zp-channel-card.is-locked {
+  border-color: var(--zp-border);
+  background: var(--zp-warm);
+}
+
+.zp-channel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.zp-channel-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--zp-forest);
+  font-family: var(--zp-font-heading);
+}
+
+.zp-channel-destination {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  color: var(--zp-ink);
+  font-weight: 500;
+}
+
+.zp-channel-hint {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--zp-muted);
+}
+
+.zp-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: var(--zp-radius-full);
+  background: #ffffff;
+  border: 1px solid var(--zp-success-border);
+  color: var(--zp-forest);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--zp-font-body);
+}
+
+.zp-verified-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--zp-emerald);
+}
+
+.zp-locked-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: var(--zp-radius-full);
+  background: #ffffff;
+  border: 1px solid var(--zp-border);
+  color: var(--zp-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.zp-locked-icon {
+  width: 13px;
+  height: 13px;
+}

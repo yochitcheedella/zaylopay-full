@@ -1,0 +1,449 @@
+/* ==========================================================================
+   Register Page Styles — Harmonized Single-Column Expanded Architecture
+   ========================================================================== */
+
+.zp-account-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.zp-draft-summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 20px;
+  border: 1px solid var(--zp-border);
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-surface-subtle);
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.zp-draft-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--zp-border);
+}
+
+.zp-draft-summary-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.zp-draft-summary-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--zp-muted);
+}
+
+.zp-draft-summary-value {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--zp-ink);
+  word-break: break-word;
+  text-align: right;
+}
+
+.zp-step-actions {
+  display: flex;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.zp-step-actions.zp-dual-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.zp-step-actions.zp-dual-actions .zp-secondary-button {
+  flex: 0 0 120px;
+}
+
+.zp-step-actions.zp-dual-actions .zp-primary-button {
+  flex: 1;
+}
+
+.zp-account-login-prompt {
+  margin: 18px 0 0;
+  font-size: 14px;
+  color: var(--zp-muted);
+  text-align: center;
+}
+
+.zp-account-login-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 4px;
+  color: var(--zp-accent-text);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.zp-account-login-link:hover {
+  color: var(--zp-forest);
+  text-decoration: underline;
+}
+
+.zp-account-login-link:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+}
+
+/* Verification Step & Method Selector */
+.zp-verification-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: var(--zp-form-inner-max, 520px);
+  margin-inline: auto;
+  text-align: left;
+}
+
+.zp-method-selector-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zp-method-selector-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--zp-forest);
+  font-family: var(--zp-font-heading);
+}
+
+.zp-method-selector {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.zp-method-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-height: 76px;
+  padding: 14px;
+  border: 1.5px solid var(--zp-border);
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-surface);
+  color: var(--zp-ink);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--zp-font-body);
+  transition: border-color var(--zp-dur-focus, 180ms) ease,
+              background-color var(--zp-dur-focus, 180ms) ease,
+              box-shadow var(--zp-dur-focus, 180ms) ease;
+}
+
+.zp-method-option:hover:not(:disabled) {
+  border-color: var(--zp-control-border);
+  background: var(--zp-surface-subtle);
+}
+
+.zp-method-option:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+}
+
+.zp-method-option.is-selected {
+  border-color: var(--zp-valid-border);
+  background: var(--zp-valid-bg);
+  box-shadow: 0 0 0 1px var(--zp-valid-border);
+}
+
+.zp-method-option:disabled {
+  background: #eff4f1;
+  border-color: var(--zp-btn-disabled-border);
+  color: var(--zp-btn-disabled-text);
+  cursor: not-allowed;
+}
+
+.zp-method-option-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  width: 100%;
+}
+
+.zp-method-icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--zp-forest);
+  flex-shrink: 0;
+}
+
+.zp-method-option-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--zp-forest);
+  font-family: var(--zp-font-heading);
+}
+
+.zp-method-option-sub {
+  font-size: 12.5px;
+  color: var(--zp-muted);
+  line-height: 1.35;
+}
+
+.zp-method-option-dest {
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--zp-ink);
+  overflow-wrap: anywhere;
+}
+
+.zp-method-verified-pill {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: var(--zp-radius-full);
+  background: #ffffff;
+  border: 1px solid var(--zp-valid-border);
+  color: var(--zp-forest);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.zp-channel-box {
+  width: 100%;
+}
+
+.zp-active-channel-card {
+  padding: 20px;
+  border: 1px solid var(--zp-border);
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-surface);
+  box-shadow: var(--zp-shadow-sm);
+}
+
+.zp-channel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.zp-channel-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--zp-forest);
+  font-family: var(--zp-font-heading);
+}
+
+.zp-channel-destination-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 6px 0 12px;
+}
+
+.zp-channel-destination {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--zp-ink);
+  font-weight: 600;
+}
+
+.zp-change-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 10px;
+  border: none;
+  background: transparent;
+  color: var(--zp-accent-text);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--zp-radius-sm);
+}
+
+.zp-change-contact-btn:hover:not(:disabled) {
+  color: var(--zp-forest);
+  background: var(--zp-valid-bg);
+  text-decoration: underline;
+}
+
+.zp-change-contact-btn:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+}
+
+.zp-change-contact-btn:disabled {
+  color: var(--zp-btn-disabled-text);
+  cursor: not-allowed;
+}
+
+.zp-change-contact-form {
+  margin: 10px 0 14px;
+  padding: 14px;
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-surface-subtle);
+  border: 1px solid var(--zp-border);
+}
+
+.zp-change-contact-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.zp-change-contact-actions .zp-secondary-button {
+  flex: 0 0 auto;
+}
+
+.zp-change-contact-actions .zp-primary-button {
+  flex: 1;
+}
+
+.zp-required-pill {
+  display: inline-flex;
+  padding: 3px 9px;
+  border-radius: var(--zp-radius-full);
+  background: var(--zp-warm);
+  border: 1px solid var(--zp-border);
+  color: var(--zp-ink);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.zp-otp-entry-section {
+  margin: 12px 0 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--zp-border);
+}
+
+.zp-otp-instructions {
+  margin: 0 0 6px;
+  font-size: 13.5px;
+  color: var(--zp-muted);
+}
+
+.zp-otp-timer-msg {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--zp-muted);
+  font-weight: 500;
+}
+
+.zp-otp-expired-msg {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--zp-error);
+  font-weight: 600;
+}
+
+.zp-channel-unconfigured {
+  margin: 8px 0 12px;
+  padding: 10px 12px;
+  border-radius: var(--zp-radius-sm);
+  background: var(--zp-warning-bg);
+  border: 1px solid var(--zp-warning-border);
+  color: var(--zp-warning);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.zp-channel-btn-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.zp-channel-btn-row .zp-verify-btn {
+  flex: 1;
+}
+
+.zp-verification-footnote {
+  margin: 0;
+  font-size: 13px;
+  color: var(--zp-muted);
+  text-align: center;
+}
+
+.zp-linking-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+.zp-linking-summary-box {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--zp-surface-subtle);
+  border: 1px solid var(--zp-border);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--zp-ink);
+}
+
+.zp-linking-summary-box p {
+  margin: 0;
+}
+
+.zp-linking-otp-center {
+  display: flex;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+@media (max-width: 540px) {
+  .zp-method-selector {
+    grid-template-columns: 1fr;
+  }
+
+  .zp-step-actions.zp-dual-actions {
+    flex-direction: column-reverse;
+  }
+
+  .zp-step-actions.zp-dual-actions .zp-secondary-button {
+    flex: auto;
+    width: 100%;
+  }
+
+  .zp-channel-btn-row,
+  .zp-change-contact-actions {
+    flex-direction: column;
+  }
+
+  .zp-change-contact-actions .zp-secondary-button,
+  .zp-change-contact-actions .zp-primary-button {
+    width: 100%;
+  }
+
+  .zp-active-channel-card {
+    padding: 16px;
+  }
+
+  .zp-draft-summary-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .zp-draft-summary-value {
+    text-align: left;
+  }
+}

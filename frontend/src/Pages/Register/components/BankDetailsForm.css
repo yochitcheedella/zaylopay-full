@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Bank Details Form Styling (Harmonized with ZayloPe Site Theme)
+   ========================================================================== */
+
+.zp-bank-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.zp-bank-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-info-bg);
+  border: 1px solid var(--zp-info-border);
+  color: var(--zp-forest);
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.zp-bank-notice-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--zp-emerald);
+}
+
+.zp-bank-notice p {
+  margin: 0;
+}
+
+.zp-toggle-mask-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  color: var(--zp-muted);
+  cursor: pointer;
+  border-radius: var(--zp-radius-sm);
+  transition: color var(--zp-transition-fast);
+}
+
+.zp-toggle-mask-btn:hover {
+  color: var(--zp-forest);
+}
+
+.zp-toggle-mask-btn:focus-visible {
+  outline: 2px solid var(--zp-emerald);
+}
+
+.zp-toggle-mask-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.zp-bank-consent-row {
+  margin: 10px 0 24px;
+  text-align: left;
+}
+
+.zp-bank-consent-row.has-error {
+  padding: 8px;
+  border-radius: var(--zp-control-radius);
+  background: var(--zp-error-bg);
+  border: 1px solid var(--zp-error-border);
+}
+
+.zp-form-action-buttons {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.zp-form-action-buttons .zp-secondary-button {
+  flex: 0 0 120px;
+}
+
+.zp-form-action-buttons .zp-primary-button {
+  flex: 1;
+}
+
+@media (max-width: 480px) {
+  .zp-form-action-buttons {
+    flex-direction: column-reverse;
+  }
+
+  .zp-form-action-buttons .zp-secondary-button {
+    flex: auto;
+    width: 100%;
+  }
+}

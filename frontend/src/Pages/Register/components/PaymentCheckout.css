@@ -1,0 +1,322 @@
+/* ==========================================================================
+   Payment Checkout Styling — Expanded 680px Card Layout
+   ========================================================================== */
+
+.zp-payment-checkout-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.zp-payment-applicant-box {
+  background: var(--zp-surface-subtle);
+  border: 1px solid var(--zp-border);
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zp-payment-applicant-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.zp-payment-applicant-kicker {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--zp-muted);
+}
+
+.zp-payment-applicant-name {
+  margin: 2px 0 0;
+  font-family: var(--zp-font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--zp-forest);
+  overflow-wrap: anywhere;
+}
+
+.zp-payment-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 6px 12px;
+  background: var(--zp-surface);
+  border: 1px solid var(--zp-border);
+  border-radius: var(--zp-radius-sm);
+  color: var(--zp-forest);
+  font-family: var(--zp-font-body);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--zp-dur-btn-hover, 150ms) ease,
+              border-color var(--zp-dur-btn-hover, 150ms) ease;
+}
+
+.zp-payment-edit-btn:hover:not(:disabled) {
+  background: var(--zp-valid-bg);
+  border-color: var(--zp-valid-border);
+}
+
+.zp-payment-edit-btn:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+}
+
+.zp-payment-contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--zp-border);
+}
+
+.zp-payment-contact-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.zp-payment-contact-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--zp-muted);
+}
+
+.zp-payment-contact-val {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--zp-ink);
+  overflow-wrap: anywhere;
+}
+
+.zp-badge-unverified {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--zp-radius-full);
+  background: #edf2ee;
+  border: 1px solid var(--zp-border);
+  color: var(--zp-text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.zp-payment-inline-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--zp-border);
+}
+
+.zp-payment-edit-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.zp-payment-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.zp-payment-link-action {
+  background: transparent;
+  border: none;
+  padding: 4px 0;
+  color: var(--zp-accent-text);
+  font-family: var(--zp-font-body);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.zp-payment-link-action:hover:not(:disabled) {
+  color: var(--zp-forest);
+}
+
+.zp-payment-link-action:focus-visible {
+  outline: var(--zp-focus-outline);
+  outline-offset: 2px;
+}
+
+.zp-payment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.zp-payment-summary-box {
+  background: var(--zp-surface-subtle);
+  border: 1px solid var(--zp-border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.zp-payment-badge {
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: var(--zp-radius-full);
+  background: var(--zp-valid-bg);
+  border: 1px solid var(--zp-valid-border);
+  color: var(--zp-forest);
+}
+
+.zp-payment-title {
+  font-family: var(--zp-font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--zp-forest);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.zp-payment-desc {
+  font-size: 14.5px;
+  color: var(--zp-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.zp-payment-breakdown {
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--zp-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zp-breakdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--zp-ink);
+}
+
+.zp-breakdown-total {
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--zp-border);
+  font-size: 16px;
+  color: var(--zp-forest);
+}
+
+.zp-breakdown-total strong {
+  font-family: var(--zp-font-heading);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.zp-benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.zp-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14.5px;
+  color: var(--zp-ink);
+  line-height: 1.45;
+}
+
+.zp-benefit-check {
+  width: 19px;
+  height: 19px;
+  color: var(--zp-valid-badge);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.zp-gateway-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--zp-muted);
+  padding: 10px 14px;
+  background: var(--zp-surface-subtle);
+  border: 1px solid var(--zp-border);
+  border-radius: var(--zp-control-radius);
+  text-align: center;
+}
+
+.zp-lock-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--zp-forest);
+  flex-shrink: 0;
+}
+
+.zp-payment-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.zp-payment-actions .zp-secondary-button {
+  flex: 0 0 120px;
+}
+
+.zp-payment-actions .zp-pay-button {
+  flex: 1;
+}
+
+.zp-payment-reconcile-btn {
+  width: 100%;
+}
+
+@media (max-width: 520px) {
+  .zp-payment-contacts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .zp-payment-summary-box {
+    padding: 16px;
+  }
+
+  .zp-payment-actions {
+    flex-direction: column-reverse;
+  }
+
+  .zp-payment-actions .zp-secondary-button {
+    flex: auto;
+    width: 100%;
+  }
+}

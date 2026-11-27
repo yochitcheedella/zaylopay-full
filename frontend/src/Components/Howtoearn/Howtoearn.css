@@ -1,0 +1,58 @@
+.zp-home .zp-earn { padding-block: var(--zp-section-padding-block, 48px); background: #fff; scroll-margin-top: 88px; }
+.zp-earn > .zp-shell { max-width: 1200px; }
+.zp-earn .zp-heading { max-width: 760px; margin-bottom: 28px; }
+.zp-referral-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; list-style: none; margin: 0; padding: 0; }
+.zp-referral-step { display: flex; min-width: 0; position: relative; }
+.zp-referral-reveal { display: flex; flex: 1; perspective: 1000px; }
+.zp-referral-card { display: flex; flex-direction: column; min-width: 0; width: 100%; padding: 22px; border: 1px solid var(--zp-border); border-radius: 20px; background: #fbfcf9; box-shadow: 0 7px 20px -17px #083d3133; transition: transform 250ms var(--zp-ease), border-color 250ms, box-shadow 250ms; }
+.zp-referral-number { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; color: var(--zp-text-secondary); font-size: 14px; font-weight: 600; letter-spacing: 0.5px; }
+.zp-referral-number b { font-size: var(--zp-step-num-size, 24px); color: var(--zp-emerald); font-weight: 700; letter-spacing: 0; line-height: 1; }
+.zp-referral-visual { margin-block: 10px 16px; perspective: 650px; background: radial-gradient(ellipse, #eaf4dd, transparent 70%); }
+.zp-earn .zp-referral-art { display: block; width: min(100%, 280px); height: 160px; margin-inline: auto; overflow: visible; }
+.zp-earn .zp-referral-card h3 { margin: 0 0 10px; font-size: 20px; font-weight: 700; line-height: 1.35; }
+.zp-earn .zp-referral-card p { margin: 0; font-size: 15px; line-height: 1.7; color: var(--zp-text-secondary); }
+.zp-earn .zp-referral-connector { position: absolute; top: 113px; inset-inline-end: -24px; width: 24px; height: 12px; color: var(--zp-emerald); pointer-events: none; }
+.zp-referral-connector path { stroke-dasharray: 5 3; }
+.zp-earn.has-entered .zp-referral-reveal { animation: zp-enter var(--zp-dur-card-enter, 420ms) var(--zp-ease) both; }
+.zp-earn.has-entered .zp-referral-step:nth-child(2) .zp-referral-reveal { animation-delay: 80ms; }
+.zp-earn.has-entered .zp-referral-step:nth-child(3) .zp-referral-reveal { animation-delay: 160ms; }
+.zp-earn.has-entered .zp-referral-step:last-child .zp-referral-reveal { animation-delay: 240ms; }
+@media (hover:hover) and (pointer:fine) {
+ .zp-referral-card:hover { transform:translateY(-4px); border-color:#a6c9af; box-shadow:0 16px 30px -20px #083d3140; }
+}
+@media(max-width:1100px) { .zp-referral-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:22px} .zp-earn .zp-referral-connector {display:none} }
+@media(max-width:560px) { .zp-home .zp-earn {padding-block:32px} .zp-referral-grid {grid-template-columns:minmax(0,1fr);gap:16px} .zp-referral-card {padding:20px} }
+@media(prefers-reduced-motion:reduce) { .zp-earn *, .zp-earn *::before, .zp-earn *::after {animation:none!important;transition:none!important} .zp-earn .zp-referral-card:hover,.zp-earn .zp-referral-card:hover .zp-referral-tilt {transform:none} }/* Approved action illustrations. Automatic transforms and hover translate/scale
+   are composed independently, so neither cancels the other. */
+.zp-earn .zp-heading>p { margin:12px 0 0; color:var(--zp-muted); font-size:16px; line-height:1.65; }
+.zp-referral-art g { transform-box:fill-box; transform-origin:center; transition:translate 250ms,scale 250ms,stroke 250ms; }
+.zp-earn.has-entered .discover-lens { animation:earn-discover 650ms ease-in-out 100ms both; }
+.zp-earn.has-entered .share-path { animation:earn-connections 900ms ease-out 650ms both; }
+.zp-earn.has-entered .share-person { animation:earn-appear 350ms ease-out 850ms both; }
+.zp-earn.has-entered .person-two { animation-delay:1000ms; }
+.zp-earn.has-entered .person-three { animation-delay:1150ms; }
+.zp-earn.has-entered .coupon-applied { animation:earn-appear 450ms ease-out 1400ms both; }
+.zp-earn.has-entered .save-check { stroke-dasharray:35; animation:earn-check 450ms ease-out 1550ms both; }
+.zp-earn.has-entered .save-confirm { animation:earn-appear 350ms ease-out 1500ms both; }
+.zp-earn.has-entered .activity-row { animation:earn-row 300ms ease-out 2050ms both; }
+.zp-earn.has-entered .row-two { animation-delay:2250ms; }
+.zp-earn.has-entered .row-three { animation-delay:2450ms; }
+.zp-earn.has-entered .zp-referral-connector path { animation:earn-connector 350ms linear 750ms 1 both; }
+.zp-earn.has-entered .zp-referral-step:nth-child(2) .zp-referral-connector path { animation-delay:1450ms; }
+.zp-earn.has-entered .zp-referral-step:nth-child(3) .zp-referral-connector path { animation-delay:1950ms; }
+@keyframes earn-discover { from {transform:translate(-15px,5px)} 70% {transform:translate(3px,-2px)} to {transform:none} }
+@keyframes earn-connections { from {stroke-dashoffset:65;opacity:.2} to {stroke-dashoffset:0;opacity:1} }
+@keyframes earn-appear { from {opacity:.25;transform:scale(.93)} to {opacity:1;transform:scale(1)} }
+@keyframes earn-check { from {stroke-dashoffset:35} to {stroke-dashoffset:0} }
+@keyframes earn-row { from {opacity:.2;transform:translateY(5px)} to {opacity:1;transform:none} }
+@keyframes earn-connector { to {stroke-dashoffset:-20} }
+@media(hover:hover) and (pointer:fine) {
+ .zp-referral-card:hover .discover-lens { translate:3px -2px; }
+ .zp-referral-card:hover .share-person { translate:0 -2px; }
+ .zp-referral-card:hover .share-path { stroke:var(--zp-forest); transition:stroke 250ms; }
+ .zp-referral-card:hover .save-confirm { scale:1.04; }
+ .zp-referral-card:hover .activity-row { translate:2px 0; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .zp-earn .zp-referral-card:hover .zp-referral-art g { translate:none; scale:none; }
+}

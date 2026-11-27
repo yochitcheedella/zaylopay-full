@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Google-Branded Official GIS Button Styling
+   ========================================================================== */
+
+.zp-google-btn-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.zp-google-btn-wrapper.is-disabled {
+  pointer-events: none;
+  filter: grayscale(0.45);
+}
+
+.zp-google-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  min-height: 44px;
+}
+
+/* Ensure Google iframe and GSI wrapper never overflow narrow mobile containers */
+.zp-google-btn-container iframe,
+.zp-google-btn-container > div {
+  margin: 0 auto !important;
+  max-width: 100% !important;
+}
+
+.zp-google-btn-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--zp-forest, #083d31);
+  border-radius: var(--zp-control-radius, 8px);
+  z-index: 10;
+}
+
+.zp-google-btn-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #dadce0;
+  border-radius: var(--zp-control-radius, 8px);
+  background: #fbfdfb;
+  color: var(--zp-muted, #52675c);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.zp-google-btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--zp-border, #dce7df);
+  border-top-color: var(--zp-emerald, #008f63);
+  border-radius: 50%;
+  animation: zp-spin 0.75s linear infinite;
+  display: inline-block;
+}
+
+@keyframes zp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.zp-google-btn-error {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--zp-control-radius, 8px);
+  background: var(--zp-error-bg, #fef2f2);
+  border: 1px solid var(--zp-error-border, #fecaca);
+  color: var(--zp-error, #991b1b);
+  font-size: 13px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.zp-google-btn-error-text {
+  margin: 0;
+  line-height: 1.45;
+}

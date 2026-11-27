@@ -1,0 +1,17 @@
+.onboarding-public-shell { display:flex; flex-direction:column; min-height:100dvh; background:var(--zp-warm,#f4f7f3); }
+.onboarding-public-shell > .navbar { flex-shrink:0; }
+.onboarding-main { display:grid; grid-template-columns:minmax(0,1fr); place-items:center; flex:1; width:100%; min-height:100dvh; padding-block:clamp(20px,3vw,32px) clamp(24px,3vw,32px); padding-left:max(16px,env(safe-area-inset-left)); padding-right:max(16px,env(safe-area-inset-right)); background:var(--zp-warm,#f4f7f3); box-sizing:border-box; }
+.onboarding-public-shell .onboarding-main { min-height:0; }
+.onboarding-main .onboarding-card { width:100%; max-width:520px; margin:0; padding:28px; background:#fff; border:1px solid var(--zp-border,#dde6df); border-radius:20px; box-shadow:0 4px 8px #083d3103,0 16px 40px -20px #083d3126; box-sizing:border-box; color:var(--zp-ink,#142820); font-family:Inter,Arial,sans-serif; animation:onboarding-enter .2s var(--zp-ease,ease-out) both; }
+@keyframes onboarding-enter { from {opacity:0;transform:translateY(6px)} to {opacity:1;transform:none} }
+@media(max-width:560px) { .onboarding-main .onboarding-card {padding:24px 20px;} }
+@media(prefers-reduced-motion:reduce) { .onboarding-main .onboarding-card {animation:none;} }
+
+.auth-header { display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:64px; padding:12px clamp(20px,4vw,48px); background:var(--zp-white,#fff); border-bottom:1px solid var(--zp-border,#dde6df); }
+.auth-header > a:last-child { display:inline-flex; align-items:center; min-height:44px; color:var(--zp-ink,#142820); font-weight:600; padding:10px; }
+.auth-header a:focus-visible { outline:3px solid var(--zp-emerald,#008f63); outline-offset:3px; }
+.onboarding-main *, .auth-header * { box-sizing:border-box; }
+.onboarding-card input { font-size:16px; }
+.onboarding-card button, .onboarding-card input { transition:background .15s, border-color .15s, box-shadow .15s, transform .15s; }
+.onboarding-card button:active:not(:disabled) { transform:scale(.98); }
+@media(prefers-reduced-motion:reduce) { .onboarding-card *, .onboarding-card *::before { transition:none!important; animation:none!important; } }

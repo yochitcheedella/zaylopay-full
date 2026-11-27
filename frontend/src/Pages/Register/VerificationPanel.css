@@ -1,0 +1,255 @@
+.verification-panel {
+  --verification-ink: var(--zp-ink, #142820);
+  --verification-text: var(--zp-ink, #142820);
+  --verification-muted: var(--zp-muted, #52675c);
+  --verification-green: var(--zp-emerald, #008f63);
+  --verification-border: var(--zp-border, #dce7df);
+  color: var(--verification-text);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.verification-intro,
+.verification-footnote {
+  color: var(--verification-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.verification-list {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 12px;
+}
+
+.verification-channel {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--verification-border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.verification-channel.is-verified {
+  padding-block: 14px;
+  border-color: #b7d4c2;
+  background: #edf4e3;
+}
+
+.verification-channel.is-locked {
+  padding-block: 13px;
+  background: #f5f8f2;
+}
+
+.verification-channel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.register-form .verification-channel h3 {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--verification-ink);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.verification-status,
+.verification-check {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 5px;
+  color: var(--verification-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.verification-check {
+  color: #255f47;
+}
+
+.verification-check svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.verification-destination,
+.verification-channel > p {
+  margin: 7px 0 0;
+  color: var(--verification-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.verification-instructions {
+  margin-top: 16px;
+  color: var(--verification-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.verification-digits {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.register-form .verification-digits input {
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  margin: 0;
+  padding: 4px 0;
+  border: 1px solid #87948f;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--verification-ink);
+  font: 700 20px/1 Inter, "Segoe UI", Arial, sans-serif;
+  text-align: center;
+}
+
+.verification-digits input:focus-visible {
+  border-color: var(--verification-green);
+  outline: 3px solid #008f6340;
+  outline-offset: 2px;
+}
+
+.verification-digits input:disabled {
+  background: #f5f8f2;
+  color: var(--verification-muted);
+}
+
+.verification-channel-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.register-form .verification-channel-actions button,
+.register-form .verification-mock-action {
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font: 700 14px/1.3 Inter, "Segoe UI", Arial, sans-serif;
+  cursor: pointer;
+}
+
+.register-form .verification-send,
+.register-form .verification-verify {
+  flex: 1;
+  background: #083d31;
+  color: #fff;
+}
+
+.register-form .verification-resend,
+.register-form .verification-mock-action {
+  background: #fff;
+  border-color: #87948f;
+  color: var(--verification-ink);
+}
+
+.register-form .verification-channel-actions button:hover:not(:disabled),
+.register-form .verification-mock-action:hover:not(:disabled) {
+  border-color: var(--verification-green);
+  background-color: #edf5e5;
+}
+
+.register-form .verification-channel-actions button:focus-visible,
+.register-form .verification-mock-action:focus-visible {
+  outline: 3px solid #008f6366;
+  outline-offset: 2px;
+}
+
+.register-form .verification-channel-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.verification-hint {
+  color: var(--verification-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.verification-panel .verification-error {
+  margin-top: 10px;
+  color: #842d25;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.verification-panel .verification-message {
+  margin-top: 10px;
+  color: #255f47;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.verification-offline,
+.verification-mock {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--verification-border);
+  border-radius: 9px;
+  background: #f5f8f2;
+  color: var(--verification-text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.verification-unconfigured-notice {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #fdf2ef;
+  border: 1px solid #fcdad7;
+  color: #842d25;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.verification-footnote {
+  margin-top: 12px;
+}
+
+@media (max-width: 400px) {
+  .verification-channel {
+    padding: 14px;
+  }
+
+  .verification-digits {
+    gap: 5px;
+  }
+
+  .verification-channel-actions {
+    flex-direction: column;
+  }
+
+  .verification-channel-actions button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .verification-panel *,
+  .verification-panel *::before,
+  .verification-panel *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

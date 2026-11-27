@@ -1,0 +1,8 @@
+const { artifactPath, browserExecutable } = require('./support/runtime.cjs');
+const {chromium}=require('playwright-core');
+const assert=require('node:assert/strict');const fs=require('node:fs');
+(async()=>{const b=await chromium.launch({headless:true,executablePath:browserExecutable()});const results=[];
+for(const width of [375,768,1024,1440]){const p=await b.newPage({viewport:{width,height:900}});await p.addInitScript(()=>{window.__shifts=[];new PerformanceObserver(list=>{for(const e of list.getEntries())if(!e.hadRecentInput)window.__shifts.push({value:e.value,sources:e.sources.map(s=>({node:s.node?.className,previous:s.previousRect.toJSON(),current:s.currentRect.toJSON()}))});}).observe({type:'layout-shift',buffered:true});});await p.goto('http://127.0.0.1:5181/how-it-works',{waitUntil:'networkidle'});await p.evaluate(()=>document.fonts.ready);await p.locator('.how-hero img').evaluate(e=>e.decode());await p.waitForTimeout(500);const shifts=await p.evaluate(()=>window.__shifts);assert.ok(shifts.reduce((a,v)=>a+v.value,0)<.025);await p.locator('.how-hero .how-primary').click();await p.waitForURL('**/how-it-works#how-process');await p.waitForFunction(()=>{const r=document.querySelector('#how-process').getBoundingClientRect();const bottom=document.querySelector('.navbar').getBoundingClientRect().bottom;return r.top>=bottom&&r.top<bottom+70;});results.push({width,initialLayoutShift:shifts.reduce((a,v)=>a+v.value,0),processAnchorAligned:true});await p.close();}fs.writeFileSync(artifactPath('how-clarity-stability-results.json'),JSON.stringify(results,null,2));await b.close();console.log('PASS measured initial layout shift below 0.025 and process anchor alignment at four widths');})().catch(e=>{console.error(e);process.exit(1)});
+
+
+

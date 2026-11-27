@@ -1,0 +1,195 @@
+/* Compile utilities for this route only. The public shell supplies the reset and tokens. */
+@import "tailwindcss/theme.css" layer(theme) prefix(tw);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "./Howitworkspage.jsx";
+@source "./HowProcess.jsx";
+
+.how-page {
+  --how-space: clamp(44px, 4.2vw, 60px);
+  color: var(--zp-ink);
+  background: var(--zp-surface);
+  font: 400 16px/1.65 var(--zp-font-body);
+}
+.how-page .public-container { width: min(1200px, calc(100% - 2 * var(--zp-space-gutter))); }
+.how-page :is(h1, h2) {
+  color: var(--zp-forest);
+  font-family: var(--zp-font-heading);
+  line-height: 1.14;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+.how-page h2 { font-size: clamp(28px, 2.7vw, 38px); }
+.how-page p { color: var(--zp-text-secondary); text-wrap: pretty; }
+.how-page .how-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: var(--zp-accent-text);
+  font-family: var(--zp-font-heading);
+  font-size: var(--zp-section-label-size, 22px);
+  font-weight: var(--zp-section-label-weight, 700);
+  letter-spacing: 0.5px;
+  text-transform: none;
+}
+.how-kicker::before { content: ''; width: 27px; height: 3px; border-radius: 2px; background: currentColor; }
+.how-page .zp-actions { margin-top: 24px; }
+.how-page .zp-button { min-height: 46px; padding-inline: 18px; font-size: 14px; }
+.how-hero { background: var(--zp-warm); }
+.how-hero-grid { grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 60px); padding-block: min(var(--how-space), 56px); }
+.how-hero h1 { font-size: clamp(35px, 4vw, 58px); line-height: 1.08; }
+.how-hero h1 span { display: block; color: var(--zp-accent-text); }
+.how-lead { max-width: 48ch; margin-top: 18px; font-size: 17px; line-height: 1.7; color: var(--zp-text-secondary); }
+.how-hero-art { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; max-height: 312px; object-fit: contain; }
+
+.how-index { border-block: 1px solid var(--zp-border); }
+.how-index > div { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+.how-index a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(7px, 1vw, 14px);
+  min-height: 64px;
+  padding: 8px;
+  color: var(--zp-forest);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.how-index a + a { border-inline-start: 1px solid var(--zp-border); }
+.how-index a:hover { background: var(--zp-warm); }
+.how-number { color: var(--zp-accent-text); font-family: var(--zp-font-heading); font-size: var(--zp-step-num-size, 24px); font-weight: 700; font-variant-numeric: tabular-nums; }
+@media (max-width: 768px) {
+  .how-number { font-size: var(--zp-step-num-size-sm, 20px); }
+}
+.how-step {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(32px, 6vw, 90px);
+  padding-block: var(--how-space);
+}
+.how-step + .how-step { border-top: 1px solid var(--zp-border); }
+.how-step:nth-child(even) .how-illustration { order: 1; }
+.how-step-copy { width: min(100%, 44ch); justify-self: center; }
+.how-step-copy h2 + p { margin-top: 14px; font-size: 16px; line-height: 1.7; color: var(--zp-text-secondary); }
+.how-step[data-kind="user"] .how-illustration { background-color: var(--zp-mint); }
+.how-membership-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 8px; color: var(--zp-accent-text); font-weight: 600; text-underline-offset: 4px; }
+.how-membership-link svg { width: 18px; height: 18px; }
+.how-illustration {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1.85;
+  border-radius: 16px;
+  background: var(--zp-warm);
+  background-image: radial-gradient(circle, #bed2c377 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.how-step:nth-child(even) .how-illustration { background-color: #edf5ed; }
+.how-illustration > svg { width: 70%; max-width: 320px; height: auto; }
+
+.how-eligibility { padding-block: var(--how-space); background: var(--zp-warm); }
+.how-note { max-width: 800px; gap: 20px; }
+.how-mark {
+  display: grid;
+  flex: 0 0 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--zp-control-border);
+  border-radius: 50%;
+  color: var(--zp-accent-text);
+}
+.how-mark svg { width: 22px; height: 22px; }
+.how-note h2 { font-size: clamp(24px, 2.2vw, 30px); }
+.how-note p, .how-next p { margin-top: 12px; max-width: 62ch; }
+.how-next { background: var(--zp-forest); padding-block: var(--how-space); }
+.how-next-inner { gap: 24px; }
+.how-next h2 { color: var(--zp-surface); }
+.how-next p { color: var(--zp-on-dark-muted); }
+.how-next .zp-actions { margin: 0; }
+.how-register { color: var(--zp-surface); border-color: var(--zp-control-border); }
+.how-next a:focus-visible { outline: 3px solid var(--zp-lime); }
+
+@media (768px <= width < 1024px) {
+  .how-index a { flex-direction: column; gap: 3px; text-align: center; }
+}
+@media (width < 768px) {
+  .how-page { --how-space: 44px; }
+  .how-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .how-hero-art { max-height: 210px; }
+  .how-page .zp-actions { justify-content: flex-start; gap: 10px; }
+  .how-page .zp-button { padding-inline: 13px; gap: 8px; }
+  .how-controls button { touch-action: manipulation; }
+  .how-index { display: none; }
+  .how-process { padding-block: var(--how-space); }
+  /* Hidden slides still size the grid cell, including when text wraps or scales. */
+  .how-slides { display: grid; touch-action: pan-y pinch-zoom; }
+  .how-step {
+    grid-area: 1 / 1;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    align-items: start;
+    gap: 22px;
+    padding: 0;
+    visibility: hidden;
+  }
+  .how-step[data-active="true"] { visibility: visible; }
+  .how-step + .how-step { border: 0; }
+  .how-step:nth-child(even) .how-illustration { order: 0; }
+  .how-illustration { aspect-ratio: 1.85; max-height: 260px; }
+  .how-illustration > svg { width: 65%; max-width: 285px; }
+  .how-step-copy { justify-self: start; width: 100%; }
+  .how-step-copy .how-kicker { margin-bottom: 8px; }
+  .how-step-copy h2 + p { margin-top: 10px; }
+  .how-controls { max-width: 420px; margin: 12px auto 0; text-align: center; }
+  .how-controls button { cursor: pointer; }
+  .how-arrow {
+    display: inline-flex;
+    min-height: 44px;
+    padding: 4px 9px;
+    gap: 4px;
+    align-items: center;
+    font: 600 14px var(--zp-font-body);
+    color: var(--zp-forest);
+    border: 1px solid var(--zp-control-border);
+    border-radius: var(--zp-control-radius);
+    background: var(--zp-surface);
+  }
+  .how-arrow svg { width: 18px; height: 18px; }
+  .how-prev svg { transform: rotate(180deg); }
+  .how-indicators { justify-content: center; }
+  .how-indicators button { width: 44px; height: 44px; border: 0; background: transparent; }
+  .how-indicators button::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background: var(--zp-control-border);
+  }
+  .how-indicators button[aria-current]::before { width: 22px; background: var(--zp-forest); }
+  .how-play { min-height: 44px; padding-inline: 4px; border: 0; color: var(--zp-accent-text); background: transparent; font: 600 14px var(--zp-font-body); }
+  .how-mobile-start { width: 100%; margin-top: 18px; }
+  .how-note { gap: 14px; }
+  .how-mark { flex-basis: 32px; height: 32px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .how-hero-copy { animation: how-hero-enter var(--zp-dur-card-enter, 420ms) var(--zp-ease) both; }
+  .how-hero-art { animation: how-art-enter var(--zp-dur-section-enter, 480ms) var(--zp-ease) 90ms both; }
+  .how-step.how-entered .how-illustration { animation: how-art-enter var(--zp-dur-section-enter, 480ms) var(--zp-ease) both; }
+  .how-step.how-entered .how-step-copy { animation: how-step-enter var(--zp-dur-card-enter, 420ms) var(--zp-ease) 80ms both; }
+  .how-eligibility.how-entered .how-note,
+  .how-next.how-entered .how-next-inner { animation: how-step-enter var(--zp-dur-card-enter, 420ms) var(--zp-ease) both; }
+  @media (width < 768px) {
+    .how-step[data-active="true"] { animation: how-slide-in var(--zp-dur-card-enter, 340ms) var(--zp-ease) both; }
+  }
+}
+@keyframes how-hero-enter { from { opacity: .92; transform: translate3d(0, 8px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes how-art-enter { from { opacity: .25; transform: scale(.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes how-step-enter { from { opacity: .15; transform: translate3d(0, var(--zp-reveal-distance, 12px), 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes how-slide-in { from { opacity: .2; transform: translate3d(8px, 0, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@media (prefers-reduced-motion: reduce) {
+  .how-page .zp-button, .how-page .zp-button svg, .how-hero-copy, .how-hero-art, .how-step, .how-eligibility, .how-next { animation: none !important; transition: none; transform: none; }
+}

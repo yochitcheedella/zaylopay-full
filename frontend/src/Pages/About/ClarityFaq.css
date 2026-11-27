@@ -1,0 +1,36 @@
+.clarity-band { background: var(--zp-surface); border-block: 1px solid var(--zp-border); scroll-margin-top: calc(var(--zp-header-offset) + 16px); }
+.clarity-section { display: grid; grid-template-columns: minmax(0,.7fr) minmax(0,1.3fr); align-items: start; gap: 32px; max-width: 1280px; padding-block: var(--about-section-space); }
+.clarity-intro h2 { font-size: var(--about-heading-size); }
+.clarity-intro h2 span { color: var(--zp-accent-text); }
+.clarity-intro > p:not(.about-eyebrow) { max-width: 340px; margin-top: 18px; font-size: var(--about-body-size); line-height: var(--about-body-leading); }
+.clarity-membership { display: inline-flex; align-items: center; gap: 16px; min-height: 46px; margin-top: 22px; padding: 10px 16px; border: 1px solid var(--zp-forest); border-radius: var(--zp-control-radius); background: var(--zp-forest); color: white; font-size: 14px; font-weight: 600; text-decoration: none; }
+.clarity-membership svg,.clarity-more svg,.clarity-answer-link svg { width: 18px; height: 18px; }
+.clarity-more { max-width: 340px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--zp-border); }
+.clarity-more p { font-size: 12px; line-height: 1.7; }
+.clarity-more a,.clarity-answer-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--zp-accent-text); font-size: 13px; line-height: 1.6; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.clarity-list { display: grid; gap: 12px; min-width: 0; }
+.clarity-item { min-width: 0; border: 1px solid var(--zp-border); border-radius: 16px; background: var(--zp-surface); }
+.clarity-item.is-open { background: var(--zp-warm); border-color: var(--zp-control-border); box-shadow: 0 5px 16px -16px #083d3155; }
+.clarity-item h3 { font-size: 16px; }
+.clarity-item h3 button { display: flex; align-items: center; justify-content: space-between; gap: 18px; width: 100%; min-height: 68px; padding: 16px 20px; border: 0; border-radius: 15px; background: transparent; color: var(--zp-forest); text-align: left; font: 600 16px/1.5 var(--zp-font-body); cursor: pointer; }
+.clarity-indicator { display: grid; place-items: center; width: 30px; height: 30px; flex-shrink: 0; border: 1px solid var(--zp-border); border-radius: 50%; background: var(--zp-warm); color: var(--zp-accent-text); font: 400 23px/1 var(--zp-font-body); }
+.clarity-item.is-open .clarity-indicator { background: var(--zp-forest); border-color: var(--zp-forest); color: white; }
+.clarity-panel { display: grid; grid-template-rows: 0fr; visibility: hidden; }
+.clarity-item.is-open .clarity-panel { grid-template-rows: 1fr; visibility: visible; }
+.clarity-panel-inner { min-height: 0; overflow: hidden; }
+.clarity-answer { padding: 0 20px 18px; }
+.clarity-answer > p { max-width: 720px; font-size: var(--about-body-size); line-height: var(--about-body-leading); }
+.clarity-answer-link { margin-top: 10px; }
+.clarity-item h3 button:focus-visible,.clarity-section a:focus-visible { outline: 3px solid var(--zp-accent-text); outline-offset: 4px; }
+.about-page main .clarity-section.about-entered > * { animation: none; }
+@media (max-width: 1100px) { .clarity-section { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 24px;  padding-block: var(--about-section-space); } }
+@media (max-width: 800px) { .clarity-section { grid-template-columns: 1fr; gap: 28px;  padding-block: var(--about-section-space); }.clarity-intro > p:not(.about-eyebrow) { max-width: 540px;  font-size: var(--about-body-size);  line-height: var(--about-body-leading); }.clarity-more { max-width: 540px; } }
+@media (max-width: 600px) { .clarity-section { padding-block: var(--about-section-space); }.clarity-item h3 button { padding: 16px; font-size: 15px; gap: 12px; }.clarity-answer { padding: 0 16px 16px; }.clarity-intro h2 { font-size: var(--about-heading-size); } }
+@media (prefers-reduced-motion: no-preference) {
+  .clarity-panel { transition: grid-template-rows 300ms var(--zp-ease),visibility 0s linear 300ms; }
+  .clarity-item.is-open .clarity-panel { transition: grid-template-rows 300ms var(--zp-ease),visibility 0s; }
+  .clarity-item { transition: background-color 250ms var(--zp-ease),border-color 250ms var(--zp-ease); }
+  .clarity-membership { transition: background-color 250ms var(--zp-ease); }
+}
+@media (hover: hover) and (pointer: fine) { .clarity-membership:hover { background: var(--zp-accent-text); }.clarity-item h3 button:hover { color: var(--zp-accent-text); } }
+@media (prefers-reduced-motion: reduce) { .clarity-section *,.clarity-section *::before,.clarity-section *::after { animation: none !important; transition: none !important; } }
